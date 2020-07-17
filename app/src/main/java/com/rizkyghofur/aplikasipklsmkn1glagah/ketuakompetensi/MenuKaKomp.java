@@ -16,7 +16,7 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 
 public class MenuKaKomp extends AppCompatActivity {
 
-    public static final String TAG_USER = "nama";
+    public static final String TAG_USER = "nama_guru";
     public static final String session_status = "session_status";
     TextView txt_username;
     String user;
