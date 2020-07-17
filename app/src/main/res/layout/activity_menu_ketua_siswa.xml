@@ -75,6 +75,7 @@
         app:layout_constraintTop_toTopOf="@id/user_name"/>
 
     <GridLayout
+        android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="150dp"
@@ -266,27 +267,25 @@
         android:text="Aplikasi PKL SMKN 1 Glagah"
         android:textColor="#000000"
         android:fontFamily="@font/mo_re"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="0dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/grid"/>
 
     <TextView
         android:textSize="12sp"
         android:text="Versi 1.0"
         android:textColor="#000000"
         android:fontFamily="@font/mo_re"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/grid"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
