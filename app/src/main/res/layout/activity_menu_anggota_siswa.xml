@@ -65,6 +65,8 @@
         android:textSize="14sp"
         android:text="siswa"
         android:id="@+id/user_id"
+        android:maxLength="20"
+        android:ellipsize="marquee"
         android:fontFamily="@font/mo_re"
         android:textColor="#ffffff"
         android:layout_marginTop="32dp"

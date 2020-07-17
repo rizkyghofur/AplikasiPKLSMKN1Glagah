@@ -64,6 +64,8 @@
     <TextView
         android:textSize="16sp"
         android:text="guru"
+        android:maxLength="25"
+        android:ellipsize="marquee"
         android:id="@+id/user_id"
         android:fontFamily="@font/mo_re"
         android:textColor="#ffffff"

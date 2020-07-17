@@ -66,6 +66,8 @@
         android:text="ketua kompetensi"
         android:id="@+id/user_id"
         android:fontFamily="@font/mo_re"
+        android:maxLength="25"
+        android:ellipsize="marquee"
         android:textColor="#ffffff"
         android:layout_marginTop="32dp"
         android:layout_marginStart="18dp"
