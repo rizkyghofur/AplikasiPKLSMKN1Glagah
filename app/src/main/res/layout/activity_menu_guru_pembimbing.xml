@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".guru.MenuGuruPembimbing">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:id="@+id/bg_top_header"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_bg_topheader"/>
+
+    <ImageView
+        android:id="@+id/user_photo"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:src="@mipmap/login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="310dp"
+        android:src="@drawable/logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="300dp"
+        android:textColor="@color/white"
+        android:text="Logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"/>
+
+    <TextView
+        android:textSize="20sp"
+        android:text="Selamat Datang"
+        android:id="@+id/user_name"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/mo_re"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/user_photo"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:textSize="16sp"
+        android:text="guru"
+        android:id="@+id/user_id"
+        android:fontFamily="@font/mo_re"
+        android:textColor="#ffffff"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/user_photo"
+        app:layout_constraintTop_toTopOf="@id/user_name"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="100dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="14dp"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bg_top_header"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_editor_absoluteX="0dp">
+
+        <androidx.cardview.widget.CardView
+            android:clickable="true"
+            android:onClick="CatatanKunjunganPKL"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardColor"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/coaching"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan Kunjungan PKL"
+                    android:textAlignment="center"
+                    android:textColor="@color/textcardColor"
+                    android:textSize="12sp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mo_re"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:clickable="true"
+            android:onClick="ProgramPKLSiswa"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardColor"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/profiles"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Program PKL Siswa"
+                    android:textAlignment="center"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/textcardColor"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/mo_re"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:clickable="true"
+            android:onClick="JurnalPKLSiswa"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardColor"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/journal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jurnal PKL Siswa"
+                    android:textColor="@color/textcardColor"
+                    android:textSize="12sp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/mo_re"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:clickable="true"
+            android:onClick="AbsensiPKLSiswa"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardColor"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/list"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Absensi Siswa PKL"
+                    android:textAlignment="center"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/textcardColor"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/mo_re"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+    <TextView
+        android:textSize="12sp"
+        android:text="Aplikasi PKL SMKN 1 Glagah"
+        android:textColor="#000000"
+        android:fontFamily="@font/mo_re"
+        android:layout_marginTop="600dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:textSize="12sp"
+        android:text="Versi 1.0"
+        android:textColor="#000000"
+        android:fontFamily="@font/mo_re"
+        android:layout_marginTop="625dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@mipmap/back">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme">
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/texttoolbar"
+                android:layout_height="wrap_content"
+                android:text="Tambah Data Program PKL"
+                android:textColor="@color/white"
+                app:popupTheme="@style/AppTheme"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_marginTop="55dp"
+        android:padding="10dp">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tanggal"
+            android:hint="Tanggal Pelaksanaan Program PKL "
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/shapeemail"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            />
+
+        <Button
+            android:id="@+id/btn_tanggal"
+            android:layout_marginBottom="7dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_baseline_calendar_today_24"
+            android:layout_alignBottom="@+id/tanggal"
+            android:layout_toEndOf="@+id/tanggal"
+            android:layout_toRightOf="@+id/tanggal"
+            />
+
+        <EditText
+            android:id="@+id/dudi_pasangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:hint="Instansi / DUDI Pasangan : "
+            android:gravity="top|left"
+            android:singleLine="true"
+            android:inputType="text"
+            android:background="@drawable/shapeemail"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/kompetensi_dasar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:hint="Kompetensi Dasar : "
+            android:gravity="top|left"
+            android:singleLine="true"
+            android:inputType="text"
+            android:background="@drawable/shapeemail"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            />
+
+        <EditText
+            android:id="@+id/topik_pekerjaan"
+            android:layout_width="400dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="180dp"
+            android:hint="Topik Pekerjaan : "
+            android:gravity="top|left"
+            android:inputType="text"
+            android:background="@drawable/shapeemail"
+            android:drawablePadding="10dp"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            android:lines="10"
+            android:minLines="5"
+            android:maxLines="15"/>
+
+        <Button
+            android:id="@+id/simpan_tambah_ubah"
+            android:layout_marginTop="340dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shapelogin"
+            android:padding="15dp"
+            android:shadowColor="@android:color/transparent"
+            android:text="Simpan" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

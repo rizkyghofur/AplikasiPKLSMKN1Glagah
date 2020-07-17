@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rizkyghofur.aplikasipklsmkn1glagah">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".handler.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/login"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/login"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Login" />
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ketuakompetensi.MenuKaKomp" />
+        <activity android:name=".ketuakompetensi.JurnalPKLSiswa" />
+        <activity android:name=".ketuakompetensi.KompetensiDasar" />
+        <activity android:name=".ketuakompetensi.AbsensiPKLSiswa" />
+        <activity android:name=".ketuakompetensi.CatatanKunjunganPKLKakomp" />
+        <activity android:name=".ketuakompetensi.PengajuanPKLSiswa" />
+        <activity android:name=".guru.MenuGuruPembimbing" />
+        <activity android:name=".guru.JurnalPKLSiswa" />
+        <activity android:name=".guru.ProgramPKLSiswa" />
+        <activity android:name=".guru.CatatanKunjunganPKL" />
+        <activity android:name=".guru.AbsensiPKLSiswa" />
+        <activity android:name=".guru.TambahCatatanKunjunganPKL" />
+        <activity android:name=".guru.UbahCatatanKunjunganPKL" />
+        <activity android:name=".siswa.MenuSiswa" />
+        <activity android:name=".siswa.AbsensiPKL" />
+        <activity android:name=".siswa.CatatanKunjunganPKLSiswa" />
+        <activity android:name=".siswa.JurnalPKL" />
+        <activity android:name=".siswa.TambahJurnalPKL" />
+        <activity android:name=".siswa.UbahJurnalPKL" />
+        <activity android:name=".siswa.ProgramPKL" />
+        <activity android:name=".siswa.TambahProgramPKL" />
+        <activity android:name=".siswa.UbahProgramPKL" />
+        <activity android:name=".siswa.PermohonanPKL" />
+        <activity android:name=".siswa.InfoDUDI" />
+    </application>
+
+</manifest>

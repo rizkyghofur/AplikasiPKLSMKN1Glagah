@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@mipmap/back">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/texttoolbar"
+            android:layout_height="wrap_content"
+            android:text="Tambah Catatan Kunjungan PKL"
+            android:textColor="@color/white"
+            app:popupTheme="@style/AppTheme"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_marginTop="55dp">
+
+        <EditText
+            android:id="@+id/tanggal_masuk"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/shapeemail"
+            android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
+            android:drawablePadding="10dp"
+            android:hint="Tanggal Kunjungan"
+            android:padding="15dp"
+            android:inputType="date"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white" />
+
+    <Button
+        android:id="@+id/btn_tanggal_masuk"
+        android:layout_marginBottom="7dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ic_baseline_calendar_today_24"
+        android:layout_alignBottom="@+id/tanggal_masuk"
+        android:layout_toEndOf="@+id/tanggal_masuk"
+        android:layout_toRightOf="@+id/tanggal_masuk"/>
+
+    <EditText
+        android:id="@+id/catatan_pembimbing"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:background="@drawable/shapeemail"
+        android:drawablePadding="10dp"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="80dp"
+        android:hint="Catatan Pembimbing"
+        android:inputType="textMultiLine|textCapSentences"
+        android:gravity="top|left"
+        android:lines="10"
+        android:minLines="5"
+        android:maxLines="15"/>
+
+    <Button
+        android:id="@+id/simpan_tambah_ubah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shapelogin"
+
+        android:padding="15dp"
+        android:shadowColor="@android:color/transparent"
+        android:text="Simpan" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

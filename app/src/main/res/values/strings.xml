@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Aplikasi PKL SMKN 1 Glagah</string>
+    <string name="namadudi">Nama DUDI</string>
+    <string name="bidangpekerjaan">Bidang Pekerjaan</string>
+    <string name="alamatdudi">Alamat DUDI</string>
+    <string name="tanggalmasuk">Tanggal Masuk DUDI</string>
+    <string name="tanggalkeluar">Tanggal Keluar DUDI</string>
+    <string name="namapimpinan">Nama Pimpinan</string>
+    <string name="namasiswa">Nama Lengkap Siswa</string>
+    <string name="kelas">Kelas</string>
+    <string name="gurupembimbing">Nama Lengkap &amp; Gelar Guru Pembimbing</string>
+    <string name="register">Kirim Formulir</string>
+    <string name="list">Lihat Formulir</string>
+    <string name="error">Kesalahan Jaringan</string>
+    <string name="permission_dialog">Accessing Location Permissions required</string>
+    <string name="go_to_permissions_settings">Go to App settings and enable permissions</string>
+
+    <string-array name="keterangan">
+        <item>Hadir</item>
+        <item>Sakit</item>
+        <item>Izin</item>
+        <item>Tanpa Keterangan</item>
+    </string-array>
+
+</resources>
