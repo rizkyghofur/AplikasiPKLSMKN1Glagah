@@ -3,32 +3,32 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.Toast;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -38,7 +38,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterAbsensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.AbsensiPKL;
 
 public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -172,6 +171,21 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }
@@ -213,6 +227,21 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AbsensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }

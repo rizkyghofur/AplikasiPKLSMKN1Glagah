@@ -83,19 +83,19 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(CatatanKunjunganPKL.this, "Network TimeoutError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatatanKunjunganPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(CatatanKunjunganPKL.this, "Nerwork NoConnectionError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatatanKunjunganPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
                     Toast.makeText(CatatanKunjunganPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(CatatanKunjunganPKL.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatatanKunjunganPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(CatatanKunjunganPKL.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatatanKunjunganPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
                     Toast.makeText(CatatanKunjunganPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CatatanKunjunganPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CatatanKunjunganPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

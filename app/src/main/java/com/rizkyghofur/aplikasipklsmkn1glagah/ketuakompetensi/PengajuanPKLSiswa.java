@@ -12,7 +12,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -154,6 +161,21 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }
@@ -198,6 +220,21 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PengajuanPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }

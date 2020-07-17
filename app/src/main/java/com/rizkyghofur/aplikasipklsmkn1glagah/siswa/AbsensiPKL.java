@@ -228,15 +228,15 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Network TimeoutError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Nerwork NoConnectionError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
                     Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
                     Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
@@ -271,19 +271,19 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Network TimeoutError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Nerwork NoConnectionError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
                     Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
                     Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -130,15 +130,15 @@ public class UbahProgramPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(UbahProgramPKL.this, "Network TimeoutError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UbahProgramPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(UbahProgramPKL.this, "Nerwork NoConnectionError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UbahProgramPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
                     Toast.makeText(UbahProgramPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(UbahProgramPKL.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UbahProgramPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(UbahProgramPKL.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UbahProgramPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
                     Toast.makeText(UbahProgramPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {

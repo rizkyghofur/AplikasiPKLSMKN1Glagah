@@ -3,19 +3,17 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -25,18 +23,11 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataCatatanKunjunganPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.guru.CatatanKunjunganPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.PermohonanPKL;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -123,6 +114,21 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CatatanKunjunganPKLKakomp.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
             }

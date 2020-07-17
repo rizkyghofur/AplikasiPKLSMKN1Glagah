@@ -141,15 +141,15 @@ public class TambahJurnalPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(TambahJurnalPKL.this, "Network TimeoutError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahJurnalPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(TambahJurnalPKL.this, "Nerwork NoConnectionError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
                     Toast.makeText(TambahJurnalPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(TambahJurnalPKL.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(TambahJurnalPKL.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahJurnalPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
                     Toast.makeText(TambahJurnalPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
