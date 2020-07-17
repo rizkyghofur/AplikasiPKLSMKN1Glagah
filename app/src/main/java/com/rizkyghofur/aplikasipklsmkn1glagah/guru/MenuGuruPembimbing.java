@@ -2,26 +2,22 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
-import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.InfoDUDI;
 import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.MenuSiswa;
 
 public class MenuGuruPembimbing extends AppCompatActivity {
 
-    public static final String TAG_USER = "nama";
+    public static final String TAG_USER_GURU = "nama_guru";
     TextView txt_username;
     String user;
     SharedPreferences sharedpreferences;
@@ -34,7 +30,7 @@ public class MenuGuruPembimbing extends AppCompatActivity {
 
         txt_username = findViewById(R.id.user_id);
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
-        user = getIntent().getStringExtra(TAG_USER);
+        user = getIntent().getStringExtra(TAG_USER_GURU);
         txt_username.setText(user);
         btn_logout = findViewById(R.id.logout);
 
@@ -72,7 +68,7 @@ public class MenuGuruPembimbing extends AppCompatActivity {
     private void logout() {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putBoolean(MenuSiswa.session_status, false);
-        editor.putString(TAG_USER, null);
+        editor.putString(TAG_USER_GURU, null);
         editor.commit();
         Intent ua = new Intent(MenuGuruPembimbing.this, Login.class);
         finish();
