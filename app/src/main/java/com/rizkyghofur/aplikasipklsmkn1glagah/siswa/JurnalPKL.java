@@ -43,7 +43,7 @@ public class JurnalPKL extends AppCompatActivity {
     private FloatingActionButton fab_tambah_jurnal;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id";
+    public static final String TAG_USER = "id_siswa";
     private RecyclerView recyclerView;
     private AdapterJurnalPKLSiswa adapter;
     private ArrayList<DataJurnalPKL> arrayJurnalPKL;

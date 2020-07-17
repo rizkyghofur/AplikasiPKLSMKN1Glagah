@@ -39,7 +39,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
     private Button btn_simpan, btn_tanggal;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id";
+    public static final String TAG_USER = "id_siswa";
     public DatePickerDialog datePickerDialog;
     public SimpleDateFormat dateFormatter;
 

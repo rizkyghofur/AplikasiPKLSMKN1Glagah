@@ -46,12 +46,15 @@ public class Login extends AppCompatActivity {
     public final static String TAG_USERNAME = "username";
     public final static String TAG_ID_DUDI = "id_dudi";
     public final static String TAG_USER = "nama";
+    public final static String TAG_USER_GURU = "nama_guru";
+    public final static String TAG_JURUSAN = "id_jurusan";
     public static final String TAG_USERTYPE = "role";
-    public final static String TAG_ID = "id";
+    public final static String TAG_ID_GURU = "id";
+    public final static String TAG_ID_SISWA = "id_siswa";
     String tag_json_obj = "json_obj_req";
     SharedPreferences sharedpreferences;
     Boolean session = false;
-    String id, username, nama, role, id_dudi;
+    String id, id_siswa, username, nama, role, id_dudi, nama_guru, id_jurusan;
     public static final String my_shared_preferences = "my_shared_preferences";
     public static final String session_status = "session_status";
 
@@ -77,37 +80,43 @@ public class Login extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(session_status, false);
-        id = sharedpreferences.getString(TAG_ID, null);
+        id = sharedpreferences.getString(TAG_ID_GURU, null);
+        id_siswa = sharedpreferences.getString(TAG_ID_SISWA, null);
         username = sharedpreferences.getString(TAG_USERNAME, null);
         nama = sharedpreferences.getString(TAG_USER, null);
         role = sharedpreferences.getString(TAG_USERTYPE, null);
-        id_dudi = sharedpreferences.getString(TAG_USERTYPE, null);
+        id_dudi = sharedpreferences.getString(TAG_ID_DUDI, null);
+        nama_guru = sharedpreferences.getString(TAG_USER_GURU, null);
+        id_jurusan = sharedpreferences.getString(TAG_JURUSAN, null);
 
         if (session&&role.equals("siswa")) {
                 Intent intent = new Intent(Login.this, MenuSiswa.class);
-                intent.putExtra(TAG_ID, id);
+                intent.putExtra(TAG_ID_SISWA, id_siswa);
                 intent.putExtra(TAG_USERNAME, username);
                 intent.putExtra(TAG_USER, nama);
                 intent.putExtra(TAG_USERTYPE, role);
                 intent.putExtra(TAG_ID_DUDI, id_dudi);
+                intent.putExtra(TAG_JURUSAN, id_jurusan);
                 finish();
                 startActivity(intent);
             }
         else if (session&&role.equals("guru")) {
                 Intent intent = new Intent(Login.this, MenuGuruPembimbing.class);
-                intent.putExtra(TAG_ID, id);
+                intent.putExtra(TAG_ID_GURU, id);
                 intent.putExtra(TAG_USERNAME, username);
-                intent.putExtra(TAG_USER, nama);
+                intent.putExtra(TAG_USER_GURU, nama_guru);
                 intent.putExtra(TAG_USERTYPE, role);
+                intent.putExtra(TAG_JURUSAN, id_jurusan);
                 finish();
                 startActivity(intent);
             }
         else if (session&&role.equals("koordinator_jurusan")) {
                 Intent intent = new Intent(Login.this, MenuKaKomp.class);
-                intent.putExtra(TAG_ID, id);
+                intent.putExtra(TAG_ID_GURU, id);
                 intent.putExtra(TAG_USERNAME, username);
-                intent.putExtra(TAG_USER, nama);
+                intent.putExtra(TAG_USER_GURU, nama_guru);
                 intent.putExtra(TAG_USERTYPE, role);
+                intent.putExtra(TAG_JURUSAN, id_jurusan);
                 finish();
                 startActivity(intent);
             }
@@ -151,47 +160,56 @@ public class Login extends AppCompatActivity {
 
                     if (success.equals("1")) {
                         String username = jObj.getString(TAG_USERNAME);
-                        String id = jObj.getString(TAG_ID);
+                        String id = jObj.getString(TAG_ID_GURU);
+                        String id_siswa = jObj.getString(TAG_ID_SISWA);
                         String role = jObj.getString(TAG_USERTYPE);
                         String nama = jObj.getString(TAG_USER);
                         String id_dudi = jObj.getString(TAG_ID_DUDI);
+                        String nama_guru = jObj.getString(TAG_USER_GURU);
+                        String id_jurusan = jObj.getString(TAG_JURUSAN);
                         Log.e("Login Berhasil", jObj.toString());
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putBoolean(session_status, true);
-                        editor.putString(TAG_ID, id);
+                        editor.putString(TAG_ID_GURU, id);
+                        editor.putString(TAG_ID_SISWA, id_siswa);
                         editor.putString(TAG_USERNAME, username);
                         editor.putString(TAG_USER, nama);
+                        editor.putString(TAG_USER_GURU, nama_guru);
                         editor.putString(TAG_USERTYPE, role);
                         editor.putString(TAG_ID_DUDI, id_dudi);
+                        editor.putString(TAG_JURUSAN, id_jurusan);
                         editor.commit();
 
                         if (role.equals("siswa")) {
                             Intent intent = new Intent(Login.this, MenuSiswa.class);
-                            intent.putExtra(TAG_ID, id);
+                            intent.putExtra(TAG_ID_SISWA, id_siswa);
                             intent.putExtra(TAG_USERNAME, username);
                             intent.putExtra(TAG_USER, nama);
                             intent.putExtra(TAG_USERTYPE, role);
                             intent.putExtra(TAG_ID_DUDI, id_dudi);
+                            intent.putExtra(TAG_JURUSAN, id_jurusan);
                             finish();
                             startActivity(intent);
                         }
                        else if (role.equals("guru")) {
                             Intent intent = new Intent(Login.this, MenuGuruPembimbing.class);
-                            intent.putExtra(TAG_ID, id);
+                            intent.putExtra(TAG_ID_GURU, id);
                             intent.putExtra(TAG_USERNAME, username);
-                            intent.putExtra(TAG_USER, nama);
+                            intent.putExtra(TAG_USER_GURU, nama_guru);
                             intent.putExtra(TAG_USERTYPE, role);
+                            intent.putExtra(TAG_JURUSAN, id_jurusan);
                             finish();
                             startActivity(intent);
                         }
                         else if (role.equals("koordinator_jurusan")) {
                             Intent intent = new Intent(Login.this, MenuKaKomp.class);
-                            intent.putExtra(TAG_ID, id);
+                            intent.putExtra(TAG_ID_GURU, id);
                             intent.putExtra(TAG_USERNAME, username);
-                            intent.putExtra(TAG_USER, nama);
+                            intent.putExtra(TAG_USER_GURU, nama_guru);
                             intent.putExtra(TAG_USERTYPE, role);
+                            intent.putExtra(TAG_JURUSAN, id_jurusan);
                             finish();
                             startActivity(intent);
                         }

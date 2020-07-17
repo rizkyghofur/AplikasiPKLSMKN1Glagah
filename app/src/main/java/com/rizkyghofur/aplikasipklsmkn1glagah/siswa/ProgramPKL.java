@@ -43,7 +43,7 @@ public class ProgramPKL extends AppCompatActivity {
     private FloatingActionButton fab_tambah;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id";
+    public static final String TAG_USER = "id_siswa";
     private RecyclerView recyclerView;
     private AdapterProgramPKLSiswa adapter;
     private ArrayList<DataProgramPKL> arrayProgramPKL;

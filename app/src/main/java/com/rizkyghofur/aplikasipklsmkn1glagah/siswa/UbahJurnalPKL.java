@@ -33,7 +33,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
 
     private EditText tanggal, kompetensi_dasar, topik_pekerjaan;
     private Button btn_simpan;
-    private String ed_id_jurnal_pkl, ed_id_siswa, ed_tanggal, ed_kompetensi_dasar, ed_dudi_pasangan, ed_topik_pekerjaan;
+    private String ed_id_jurnal_pkl, ed_id_siswa, ed_tanggal, ed_kompetensi_dasar, ed_topik_pekerjaan;
     Toolbar toolbar;
     TextView texttoolbar;
 

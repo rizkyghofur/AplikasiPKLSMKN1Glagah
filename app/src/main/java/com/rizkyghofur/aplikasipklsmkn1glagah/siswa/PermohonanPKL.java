@@ -51,9 +51,10 @@ import java.util.List;
 public class PermohonanPKL extends AppCompatActivity {
 
     private FloatingActionButton fab_tambah;
-    String user, hasil;
+    String user, hasil, id_jurusan;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id";
+    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_JURUSAN = "id_jurusan";
     private RecyclerView recyclerView;
     private AdapterPermohonanPKLSiswa adapter;
     private ArrayList<DataPermohonanPKL> arrayPermohonanPKL;
@@ -62,6 +63,7 @@ public class PermohonanPKL extends AppCompatActivity {
     private static String url = Server.URL + "listdudi.php";
     public static final String TAG_ID_DUDI = "id";
     public static final String TAG_NAMA_DUDI = "nama_dudi";
+
 
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
@@ -80,6 +82,7 @@ public class PermohonanPKL extends AppCompatActivity {
         fab_tambah = findViewById(R.id.fab_tambah_permohonan);
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         user = sharedpreferences.getString(TAG_USER, "");
+        id_jurusan = sharedpreferences.getString(TAG_JURUSAN, "");
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -256,7 +259,7 @@ public class PermohonanPKL extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         showDialog();
 
-        JsonArrayRequest jArr = new JsonArrayRequest(url,
+        JsonArrayRequest jArr = new JsonArrayRequest(url + "?id_jurusan=" + id_jurusan,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
