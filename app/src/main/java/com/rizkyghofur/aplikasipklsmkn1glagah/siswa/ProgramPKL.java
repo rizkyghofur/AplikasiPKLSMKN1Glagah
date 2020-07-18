@@ -67,6 +67,7 @@ public class ProgramPKL extends AppCompatActivity {
         cari = findViewById(R.id.btn_cari);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
         mInstance = this;
         fab_tambah.setOnClickListener(new View.OnClickListener() {
             @Override

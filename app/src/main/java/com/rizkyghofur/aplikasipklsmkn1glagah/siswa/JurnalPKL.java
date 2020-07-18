@@ -66,6 +66,7 @@ public class JurnalPKL extends AppCompatActivity {
         tanggal = findViewById(R.id.input_tanggal);
         cari = findViewById(R.id.btn_cari);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         mInstance = this;
         fab_tambah_jurnal.setOnClickListener(new View.OnClickListener() {

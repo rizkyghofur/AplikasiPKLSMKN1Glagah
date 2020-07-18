@@ -99,7 +99,7 @@ public class PermohonanPKL extends AppCompatActivity {
     private void DialogForm(final String hasilx, String button) {
         dialog = new AlertDialog.Builder(PermohonanPKL.this);
         inflater = getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.activity_siswa_permohonan_pkl_tambah_ubah, null);
+        dialogView = inflater.inflate(R.layout.activity_siswa_permohonan_pkl_tambah, null);
         dialog.setView(dialogView);
         dialog.setCancelable(true);
         dialog.setIcon(R.mipmap.login);

@@ -1,15 +1,25 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
+import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterListKompetensiDasar;
+import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterListMapel;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataKompetensiDasar;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataMapel;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
@@ -28,20 +38,38 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class TambahJurnalPKL extends AppCompatActivity {
 
     Toolbar toolbar;
-    private EditText tanggal, kompetensi_dasar, topik_pekerjaan;
+    private EditText tanggal, txt_hasil_mapel, txt_hasil_kompetensi_dasar, topik_pekerjaan;
     private Button btn_simpan, btn_tanggal;
     String user;
     SharedPreferences sharedpreferences;
     public static final String TAG_USER = "id_siswa";
+    public static final String TAG_ID_MAPEL = "id";
+    public static final String TAG_MAPEL = "nama_mapel";
+    public static final String TAG_ID_KOMPETENSI_DASAR = "id";
+    public static final String TAG_KOMPETENSI_DASAR = "kompetensi_dasar";
+    private static final String TAG = TambahJurnalPKL.class.getSimpleName();
+    private static String url_mapel = Server.URL + "mapel.php";
+    private static String url_kompetensi_dasar = Server.URL + "kompetensi_dasar.php";
     public DatePickerDialog datePickerDialog;
     public SimpleDateFormat dateFormatter;
+    ProgressDialog pDialog;
+    Spinner spinner_mapel, spinner_kompetensi_dasar;
+    AdapterListMapel adapter;
+    AdapterListKompetensiDasar adapter1;
+    List<DataMapel> listmapel = new ArrayList<DataMapel>();
+    List<DataKompetensiDasar> listkompetensidasar = new ArrayList<DataKompetensiDasar>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +81,10 @@ public class TambahJurnalPKL extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         user = sharedpreferences.getString(TAG_USER, "");
         tanggal = findViewById(R.id.tanggal);
-        kompetensi_dasar = findViewById(R.id.kompetensi_dasar);
+        spinner_mapel = findViewById(R.id.spinner_mapel);
+        spinner_kompetensi_dasar = findViewById(R.id.spinner_kompetensi_dasar);
+        txt_hasil_mapel = findViewById(R.id.txt_hasil_mapel);
+        txt_hasil_kompetensi_dasar = findViewById(R.id.txt_hasil_kompetensi_dasar);
         topik_pekerjaan = findViewById(R.id.topik_pekerjaan);
         btn_simpan = findViewById(R.id.simpan_tambah_ubah);
         btn_tanggal = findViewById(R.id.btn_tanggal);
@@ -61,6 +92,35 @@ public class TambahJurnalPKL extends AppCompatActivity {
 
         String date = dateFormatter.format(Calendar.getInstance().getTime());
         tanggal.setText(date);
+
+        spinner_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                txt_hasil_mapel.setText(listmapel.get(position).getId_mapel());
+                callData1();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinner_kompetensi_dasar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                txt_hasil_kompetensi_dasar.setText(listkompetensidasar.get(position).getId());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        adapter = new AdapterListMapel(TambahJurnalPKL.this, listmapel);
+        adapter1 = new AdapterListKompetensiDasar(TambahJurnalPKL.this, listkompetensidasar);
+        spinner_mapel.setAdapter(adapter);
+        spinner_kompetensi_dasar.setAdapter(adapter1);
+        callData();
 
         btn_tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +133,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String tanggalx = tanggal.getText().toString();
-                String kompetensi_dasarx = kompetensi_dasar.getText().toString();
+                String kompetensi_dasarx = txt_hasil_kompetensi_dasar.getText().toString();
                 String topik_pekerjaanx = topik_pekerjaan.getText().toString();
 
                 if (tanggalx.isEmpty()) {
@@ -88,6 +148,130 @@ public class TambahJurnalPKL extends AppCompatActivity {
                 }
             }
         });
+    }
+    
+    private void callData() {
+        listmapel.clear();
+        pDialog = new ProgressDialog(TambahJurnalPKL.this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Loading...");
+        showDialog();
+
+        JsonArrayRequest jArr = new JsonArrayRequest(url_mapel,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e(TAG, response.toString());
+
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject obj = response.getJSONObject(i);
+
+                                DataMapel item = new DataMapel();
+
+                                item.setId_mapel(obj.getString(TAG_ID_MAPEL));
+                                item.setNama_mapel(obj.getString(TAG_MAPEL));
+
+                                listmapel.add(item);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                        hideDialog();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TambahJurnalPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+                Toast.makeText(TambahJurnalPKL.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(jArr);
+    }
+
+    private void callData1() {
+        listkompetensidasar.clear();
+        pDialog = new ProgressDialog(TambahJurnalPKL.this);
+        pDialog.setCancelable(true);
+        pDialog.setMessage("Loading...");
+        showDialog();
+
+        JsonArrayRequest jArr = new JsonArrayRequest(url_kompetensi_dasar + "?id_mapel=" + txt_hasil_mapel.getText().toString(),
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e(TAG, response.toString());
+
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject obj = response.getJSONObject(i);
+
+                                DataKompetensiDasar item = new DataKompetensiDasar();
+
+                                item.setId(obj.getString(TAG_ID_KOMPETENSI_DASAR));
+                                item.setKompetensi_dasar(obj.getString(TAG_KOMPETENSI_DASAR));
+
+                                listkompetensidasar.add(item);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        adapter1.notifyDataSetChanged();
+                        hideDialog();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(TambahJurnalPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TambahJurnalPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
+                VolleyLog.e(TAG, "Error: " + error.getMessage());
+                Toast.makeText(TambahJurnalPKL.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(jArr);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 
     public void TanggalMasuk(){
@@ -104,7 +288,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
     }
 
     private void simpanData(String tanggal, String kompetensi_dasar, String topik_pekerjaan) {
-        String url = Server.URL + "tambah_jurnal_pkl_siswa.php?id_siswa=" + user + "&tanggal=" + tanggal + "&kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
+        String url = Server.URL + "tambah_jurnal_pkl_siswa.php?id_siswa=" + user + "&tanggal=" + tanggal + "&id_kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
