@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ketuakompetensi.KompetensiDasar"
-    android:background="@mipmap/back">
+    android:background="@mipmap/backwhite">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,11 +34,26 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <Spinner
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listItem"
+        android:padding="7dp">
+    </Spinner>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/setspinner"
+        android:visibility="gone">
+    </TextView>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp">
+        android:layout_marginTop="120dp">
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"

@@ -36,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp">
+
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
@@ -44,6 +45,7 @@
             android:dividerHeight="2dp"
             android:listSelector="@drawable/list_row_selector">
         </ListView>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <Spinner
