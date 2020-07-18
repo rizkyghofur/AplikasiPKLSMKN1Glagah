@@ -17,6 +17,9 @@ public class DataJurnalPKL {
     @SerializedName("kompetensi_dasar")
     @Expose
     private String kompetensi_dasar;
+    @SerializedName("id_mapel")
+    @Expose
+    private String id_mapel;
     @SerializedName("topik_pekerjaan")
     @Expose
     private String topik_pekerjaan;
@@ -33,11 +36,12 @@ public class DataJurnalPKL {
     @Expose
     private String catatan;
 
-    public DataJurnalPKL(String id_jurnal_pkl, String id_siswa, String kelas, String kompetensi_dasar, String tanggal, String topik_pekerjaan, String id_dudi, String status, String catatan) {
+    public DataJurnalPKL(String id_jurnal_pkl, String id_siswa, String kelas, String kompetensi_dasar, String id_mapel, String tanggal, String topik_pekerjaan, String id_dudi, String status, String catatan) {
         this.id_jurnal_pkl = id_jurnal_pkl;
         this.id_siswa = id_siswa;
         this.kelas = kelas;
         this.kompetensi_dasar = kompetensi_dasar;
+        this.id_mapel = id_mapel;
         this.tanggal = tanggal;
         this.topik_pekerjaan = topik_pekerjaan;
         this.id_dudi = id_dudi;
@@ -78,6 +82,14 @@ public class DataJurnalPKL {
 
     public void setKompetensi_dasar(String kompetensi_dasar){
         this.kompetensi_dasar = kompetensi_dasar;
+    }
+
+    public String getId_mapel(){
+        return id_mapel;
+    }
+
+    public void setId_mapel(String id_mapel){
+        this.id_mapel = id_mapel;
     }
 
     public String getTanggal() {

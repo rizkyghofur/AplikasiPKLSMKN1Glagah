@@ -20,7 +20,7 @@ public class DataProgramPKL {
     @SerializedName("topik_pekerjaan")
     @Expose
     private String topik_pekerjaan;
-    @SerializedName("dudi_pasangan")
+    @SerializedName("nama_dudi")
     @Expose
     private String dudi_pasangan;
     @SerializedName("tanggal")
