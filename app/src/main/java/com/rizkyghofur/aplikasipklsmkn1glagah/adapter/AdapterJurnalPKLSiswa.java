@@ -138,6 +138,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
             intent.putExtra("ed_tanggal", JurnalPKL.getTanggal());
             intent.putExtra("ed_nama_dudi", JurnalPKL.getId_dudi());
             intent.putExtra("ed_kompetensi_dasar", JurnalPKL.getKompetensi_dasar());
+            intent.putExtra("ed_id_mapel", JurnalPKL.getId_mapel());
             intent.putExtra("ed_topik_pekerjaan", JurnalPKL.getTopik_pekerjaan());
             context.startActivity(intent);
         }
