@@ -1,15 +1,15 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.data;
 
 public class DataAbsensiPKL {
-    private String id_absensi, id_dudi, nama, kelas, tanggal_absensi, keterangan, nama_dudi;
+    private String id_absensi, id_dudi, nama_siswa, kelas, tanggal_absensi, keterangan, nama_dudi;
 
     public DataAbsensiPKL() {
     }
 
-    public DataAbsensiPKL(String id_absensi, String id_dudi, String nama, String kelas, String tanggal_absensi, String keterangan, String nama_dudi) {
+    public DataAbsensiPKL(String id_absensi, String id_dudi, String nama_siswa, String kelas, String tanggal_absensi, String keterangan, String nama_dudi) {
         this.id_absensi = id_absensi;
         this.id_dudi = id_dudi;
-        this.nama = nama;
+        this.nama_siswa = nama_siswa;
         this.kelas = kelas;
         this.tanggal_absensi = tanggal_absensi;
         this.keterangan = keterangan;
@@ -33,11 +33,11 @@ public class DataAbsensiPKL {
     }
 
     public String getId_siswa() {
-        return nama;
+        return nama_siswa;
     }
 
-    public void setId_siswa(String nama) {
-        this.nama = nama;
+    public void setId_siswa(String nama_siswa) {
+        this.nama_siswa = nama_siswa;
     }
 
     public String getTanggal_absensi() {

@@ -17,10 +17,10 @@
 
     <ImageView
         android:id="@+id/user_photo"
-        android:layout_width="71dp"
-        android:layout_height="71dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:src="@mipmap/login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
         android:id="@+id/user_name"
         android:textColor="#ffffff"
         android:fontFamily="@font/mo_re"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,13 +63,26 @@
 
     <TextView
         android:textSize="14sp"
-        android:text="siswa"
+        android:text="Nama Siswa"
         android:id="@+id/user_id"
         android:fontFamily="@font/mo_re"
         android:textColor="#ffffff"
         android:maxLength="20"
         android:ellipsize="marquee"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/user_photo"
+        app:layout_constraintTop_toTopOf="@id/user_name"/>
+
+    <TextView
+        android:textSize="14sp"
+        android:text="Status Validasi"
+        android:id="@+id/status_validasi"
+        android:fontFamily="@font/mo_re"
+        android:textColor="#ffffff"
+        android:layout_marginTop="65dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

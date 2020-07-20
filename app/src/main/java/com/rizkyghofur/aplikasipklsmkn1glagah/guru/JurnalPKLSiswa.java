@@ -58,7 +58,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
     private static String jurnalpkl = Server.URL + "guru_jurnalpkl_siswa.php";
     private static String jurnalpklfilter = Server.URL + "guru_jurnalpkl_siswa_filter.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_jurnal_pkl";
-    public static final String TAG_NAMA_SISWA  = "nama";
+    public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
     public static final String TAG_KOMPETENSI_DASAR  = "kompetensi_dasar";
     public static final String TAG_TANGGAL = "tanggal";
@@ -199,6 +199,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
 
                         item.setId_jurnal_pkl(obj.getString(TAG_ID_JURNAL_PKL));
                         item.setId_siswa(obj.getString(TAG_NAMA_SISWA));
+                        item.setKelas(obj.getString(TAG_KELAS));
                         item.setKompetensi_dasar(obj.getString(TAG_KOMPETENSI_DASAR));
                         item.setTanggal(obj.getString(TAG_TANGGAL));
                         item.setTopik_pekerjaan(obj.getString(TAG_TOPIK_PEKERJAAN));

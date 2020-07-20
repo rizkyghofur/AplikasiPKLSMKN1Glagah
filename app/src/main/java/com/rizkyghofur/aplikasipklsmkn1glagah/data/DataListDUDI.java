@@ -1,22 +1,22 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.data;
 
 public class DataListDUDI {
-    private String id, nama_dudi;
+    private String id_dudi, nama_dudi;
 
     public DataListDUDI() {
     }
 
-    public DataListDUDI(String id, String nama_dudi) {
-        this.id = id;
+    public DataListDUDI(String id_dudi, String nama_dudi) {
+        this.id_dudi = id_dudi;
         this.nama_dudi = nama_dudi;
     }
 
     public String getId_dudi() {
-        return id;
+        return id_dudi;
     }
 
-    public void setId_dudi(String id) {
-        this.id = id;
+    public void setId_dudi(String id_dudi) {
+        this.id_dudi = id_dudi;
     }
 
     public String getNama_dudi() {

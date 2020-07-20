@@ -1,12 +1,12 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.data;
 
 public class DataDUDI {
-    private String id, no_telp_dudi, nama_dudi, alamat_dudi, jenis_usaha, nama_pimpinan, no_telp_pimpinan, kuota;
+    private String id_dudi, no_telp_dudi, nama_dudi, alamat_dudi, jenis_usaha, nama_pimpinan, no_telp_pimpinan, kuota;
     public DataDUDI() {
     }
 
-    public DataDUDI(String id, String nama_dudi, String alamat_dudi, String no_telp_dudi, String jenis_usaha, String nama_pimpinan, String no_telp_pimpinan, String kuota) {
-        this.id = id;
+    public DataDUDI(String id_dudi, String nama_dudi, String alamat_dudi, String no_telp_dudi, String jenis_usaha, String nama_pimpinan, String no_telp_pimpinan, String kuota) {
+        this.id_dudi = id_dudi;
         this.nama_dudi = nama_dudi;
         this.alamat_dudi = alamat_dudi;
         this.no_telp_dudi = no_telp_dudi;
@@ -17,11 +17,11 @@ public class DataDUDI {
     }
 
     public String getId_dudi() {
-        return id;
+        return id_dudi;
     }
 
-    public void setId_dudi(String id) {
-        this.id = id;
+    public void setId_dudi(String id_dudi) {
+        this.id_dudi = id_dudi;
     }
 
     public String getNama_dudi() {

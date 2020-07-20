@@ -58,7 +58,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
     private static String jurnalpkl = Server.URL + "kakomp_jurnalpkl_siswa.php";
     private static String jurnalpklfilter = Server.URL + "kakomp_jurnalpkl_siswa_filter.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_jurnal_pkl";
-    public static final String TAG_NAMA_SISWA  = "nama";
+    public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
     public static final String TAG_KOMPETENSI_DASAR  = "kompetensi_dasar";
     public static final String TAG_TANGGAL = "tanggal";

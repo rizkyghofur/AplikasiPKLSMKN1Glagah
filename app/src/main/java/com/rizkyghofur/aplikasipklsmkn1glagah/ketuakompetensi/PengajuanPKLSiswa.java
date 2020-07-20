@@ -51,7 +51,7 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
     public static final String TAG_ID_PENGAJUANPKL = "id_pengajuanpkl";
     public static final String TAG_ID_SISWA = "id_siswa";
     public static final String TAG_ID_DUDI  = "nama_dudi";
-    public static final String TAG_NAMA_SISWA = "nama";
+    public static final String TAG_NAMA_SISWA = "nama_siswa";
     public static final String TAG_KELAS  = "kelas";
     public static final String TAG_TANGGAL_MASUK   = "tanggal_masuk";
     public static final String TAG_TANGGAL_KELUAR  = "tanggal_keluar";

@@ -56,7 +56,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     private static String absensipkl  = Server.URL + "guru_absensi_pkl_siswa.php";
     private static String absensipklfilter  = Server.URL + "guru_absensi_pkl_siswa_filter.php";
     public static final String TAG_ID_ABSENSI  = "id_absensi";
-    public static final String TAG_NAMA_SISWA  = "nama";
+    public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
     public static final String TAG_TANGGAL_ABSENSI  = "tanggal_absensi";
     public static final String TAG_KETERANGAN = "keterangan";
@@ -112,6 +112,9 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
             }
         });
 
+        String date = dateFormatter.format(Calendar.getInstance().getTime());
+        tanggal_absensi.setText(date);
+
     }
 
     @Override
@@ -138,7 +141,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
-        JsonArrayRequest jArr = new JsonArrayRequest(absensipkl+"?id_guru="+user, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?id_guru="+user+"&tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());

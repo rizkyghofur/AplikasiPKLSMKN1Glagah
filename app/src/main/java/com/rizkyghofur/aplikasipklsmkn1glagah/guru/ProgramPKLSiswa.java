@@ -56,12 +56,12 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     public static final String TAG_USER = "id";
     private static String programpkl = Server.URL + "guru_program_pkl_siswa.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_program_pkl";
-    public static final String TAG_NAMA_SISWA  = "nama";
+    public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
     public static final String TAG_KOMPETENSI_DASAR  = "kompetensi_dasar";
     public static final String TAG_TANGGAL = "tanggal";
     public static final String TAG_TOPIK_PEKERJAAN  = "topik_pekerjaan";
-    public static final String TAG_NAMA_DUDI  = "dudi_pasangan";
+    public static final String TAG_NAMA_DUDI  = "nama_dudi";
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
 

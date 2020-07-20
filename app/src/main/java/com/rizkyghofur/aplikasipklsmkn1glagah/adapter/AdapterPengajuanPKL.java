@@ -46,6 +46,9 @@ public class AdapterPengajuanPKL extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.activity_kakomp_pengajuanpkl_list, null);
 
+        if (convertView == null)
+            convertView = inflater.inflate(R.layout.activity_menu_siswa, null);
+
         TextView id_pengajuanpkl = convertView.findViewById(R.id.id_permohonan_pkl);
         TextView id_siswa = convertView.findViewById(R.id.id_siswa);
         TextView id_dudi = convertView.findViewById(R.id.id_dudi);
