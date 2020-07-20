@@ -54,7 +54,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
     SharedPreferences sharedpreferences;
 
     private static final String TAG = CatatanKunjunganPKL.class.getSimpleName();
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_ID_USER = "id";
     private static String catatankunjunganpkl  = Server.URL + "catatankunjunganpkl.php";
     public static final String TAG_ID_CATATAN_KUNJUNGAN_PKL  = "id_catatan_kunjungan_pkl";
     public static final String TAG_NAMA_GURU  = "nama_guru";
@@ -69,7 +69,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
         setSupportActionBar(toolbar);
 
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
-        user = sharedpreferences.getString(TAG_USER, "");
+        user = sharedpreferences.getString(TAG_ID_USER, "");
 
         swipe   = findViewById(R.id.swipe_refresh_layout);
         list    = findViewById(R.id.list);

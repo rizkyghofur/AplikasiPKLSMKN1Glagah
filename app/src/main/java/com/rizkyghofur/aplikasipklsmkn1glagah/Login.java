@@ -45,12 +45,12 @@ public class Login extends AppCompatActivity {
     private static final String TAG_MESSAGE = "message";
     public final static String TAG_USERNAME = "username";
     public final static String TAG_ID_DUDI = "id_dudi";
-    public final static String TAG_USER = "nama";
+    public final static String TAG_USER = "nama_siswa";
     public final static String TAG_USER_GURU = "nama_guru";
     public final static String TAG_JURUSAN = "id_jurusan";
     public static final String TAG_USERTYPE = "role";
     public final static String TAG_ID_GURU = "id";
-    public final static String TAG_ID_SISWA = "id_siswa";
+    public final static String TAG_ID_SISWA = "id";
     String tag_json_obj = "json_obj_req";
     SharedPreferences sharedpreferences;
     Boolean session = false;

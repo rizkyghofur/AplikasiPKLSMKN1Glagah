@@ -51,7 +51,7 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
     private static String infodudi  = Server.URL + "infodudi.php";
     private static String infodudi_search  = Server.URL + "infodudi_search.php";
     public static final String TAG_JURUSAN = "id_jurusan";
-    public static final String TAG_ID_DUDI       = "id";
+    public static final String TAG_ID_DUDI       = "id_dudi";
     public static final String TAG_NAMA_DUDI     = "nama_dudi";
     public static final String TAG_ALAMAT_DUDI   = "alamat_dudi";
     public static final String TAG_NO_TELP_DUDI   = "no_telp_dudi";

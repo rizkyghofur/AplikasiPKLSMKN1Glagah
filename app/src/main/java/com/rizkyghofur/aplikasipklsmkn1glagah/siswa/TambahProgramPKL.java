@@ -57,7 +57,7 @@ public class TambahProgramPKL extends AppCompatActivity {
     private Button btn_simpan, btn_tanggal;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_USER = "id";
     public static final String TAG_ID_MAPEL = "id";
     public static final String TAG_MAPEL = "nama_mapel";
     public static final String TAG_ID_KOMPETENSI_DASAR = "id";

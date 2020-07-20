@@ -60,7 +60,7 @@ public class AbsensiPKL extends AppCompatActivity {
     private FloatingActionButton fab_tambah;
     String user, hasil, hasil1, tanggal, id_dudi;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_USER = "id";
     public final static String TAG_ID_DUDI = "id_dudi";
     private RecyclerView recyclerView;
     private AdapterAbsensiPKLSiswa adapter;

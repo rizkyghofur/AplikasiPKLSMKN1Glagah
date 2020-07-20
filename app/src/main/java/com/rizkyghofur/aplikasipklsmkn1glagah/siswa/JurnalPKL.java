@@ -43,7 +43,7 @@ public class JurnalPKL extends AppCompatActivity {
     private FloatingActionButton fab_tambah_jurnal;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_ID_USER = "id";
     private RecyclerView recyclerView;
     private AdapterJurnalPKLSiswa adapter;
     private ArrayList<DataJurnalPKL> arrayJurnalPKL;
@@ -60,7 +60,7 @@ public class JurnalPKL extends AppCompatActivity {
 
         fab_tambah_jurnal = findViewById(R.id.fab_tambah_jurnal);
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
-        user = sharedpreferences.getString(TAG_USER, "");
+        user = sharedpreferences.getString(TAG_ID_USER, "");
         recyclerView = findViewById(R.id.recyclerview);
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         tanggal = findViewById(R.id.input_tanggal);

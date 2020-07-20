@@ -54,7 +54,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
     private Button btn_simpan, btn_tanggal;
     String user;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_ID_USER = "id";
     public static final String TAG_ID_MAPEL = "id";
     public static final String TAG_MAPEL = "nama_mapel";
     public static final String TAG_ID_KOMPETENSI_DASAR = "id";
@@ -79,7 +79,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
-        user = sharedpreferences.getString(TAG_USER, "");
+        user = sharedpreferences.getString(TAG_ID_USER, "");
         tanggal = findViewById(R.id.tanggal);
         spinner_mapel = findViewById(R.id.spinner_mapel);
         spinner_kompetensi_dasar = findViewById(R.id.spinner_kompetensi_dasar);

@@ -3,6 +3,7 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,22 +39,27 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPermohonanPKLSiswa;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataListDUDI;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPermohonanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
+import com.rizkyghofur.aplikasipklsmkn1glagah.guru.MenuGuruPembimbing;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
+import com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi.MenuKaKomp;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PermohonanPKL extends AppCompatActivity {
 
     private FloatingActionButton fab_tambah;
     String user, hasil, id_jurusan;
     SharedPreferences sharedpreferences;
-    public static final String TAG_USER = "id_siswa";
+    public static final String TAG_USER = "id";
     public static final String TAG_JURUSAN = "id_jurusan";
     private RecyclerView recyclerView;
     private AdapterPermohonanPKLSiswa adapter;
@@ -61,9 +67,12 @@ public class PermohonanPKL extends AppCompatActivity {
     public static PermohonanPKL mInstance;
     private static final String TAG = PermohonanPKL.class.getSimpleName();
     private static String url = Server.URL + "listdudi.php";
-    public static final String TAG_ID_DUDI = "id";
+    private static String url1 = Server.URL + "cek_pengajuanpkl.php";
+    public static final String TAG_ID_DUDI = "id_dudi";
     public static final String TAG_NAMA_DUDI = "nama_dudi";
-
+    private static final String TAG_MESSAGE = "status_pesan";
+    String tag_json_obj = "json_obj_req";
+    String success;
 
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
@@ -90,7 +99,8 @@ public class PermohonanPKL extends AppCompatActivity {
         fab_tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogForm("", "SIMPAN");
+                cekPengajuanPKL();
+//                DialogForm("", "SIMPAN");
             }
         });
         MuatData();
@@ -307,6 +317,55 @@ public class PermohonanPKL extends AppCompatActivity {
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
+    }
+
+    private void cekPengajuanPKL() {
+        StringRequest strReq = new StringRequest(Request.Method.GET, url1 + "?id_siswa=" + user, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Login Respon: " + response.toString());
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    success = jObj.getString("status_kode");
+
+                    if (success.equals("1")) {
+                        Log.e("Permohonan PKL", jObj.toString());
+                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                    } else {
+                        DialogForm("", "SIMPAN");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Maaf, Jaringan Bermasalah", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(PermohonanPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(PermohonanPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(PermohonanPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(PermohonanPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(PermohonanPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(PermohonanPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PermohonanPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
+                Log.e(TAG, "PermohonanPKL Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+        };
+        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
 
     private void showDialog() {
