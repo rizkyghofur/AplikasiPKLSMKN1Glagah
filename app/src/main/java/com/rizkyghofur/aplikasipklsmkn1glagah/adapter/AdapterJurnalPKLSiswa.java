@@ -57,7 +57,11 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
         holder.tanggal.setText("Tanggal Kunjungan : " + JurnalPKL.getTanggal());
         holder.kompetensi_dasar.setText("Rujukan Kompetensi Dasar : " + JurnalPKL.getKompetensi_dasar());
         holder.topik_pekerjaan.setText("Topik Pekerjaan : " + JurnalPKL.getTopik_pekerjaan());
-        holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());
+        if(JurnalPKL.getStatus().equals("Tervalidasi")){
+            holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());
+        } else{
+            holder.status1.setText("Status Validasi : " + JurnalPKL.getStatus());
+        }
         holder.catatan.setText("Catatan : " + JurnalPKL.getCatatan());
     }
 
@@ -67,7 +71,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView id_jurnal_pkl, id_siswa, tanggal, kompetensi_dasar, topik_pekerjaan, status, catatan;
+        private TextView id_jurnal_pkl, id_siswa, tanggal, kompetensi_dasar, topik_pekerjaan, status, status1, catatan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +82,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
             kompetensi_dasar = itemView.findViewById(R.id.kompetensi_dasar);
             topik_pekerjaan = itemView.findViewById(R.id.topik_pekerjaan);
             status = itemView.findViewById(R.id.status_validasi);
+            status1 = itemView.findViewById(R.id.status_validasi1);
             catatan = itemView.findViewById(R.id.catatan);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
