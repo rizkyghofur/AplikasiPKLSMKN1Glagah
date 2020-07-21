@@ -32,11 +32,14 @@ public class DataPermohonanPKL {
     @SerializedName("status_validasi")
     @Expose
     private String status_validasi;
+    @SerializedName("status_keanggotaan")
+    @Expose
+    private String status_keanggotaan;
 
     public DataPermohonanPKL() {
     }
 
-    public DataPermohonanPKL(String id_pengajuanpkl, String id_siswa, String id_dudi, String nama_siswa, String kelas, String id_guru, String status_validasi, String tanggal_masuk, String tanggal_keluar) {
+    public DataPermohonanPKL(String id_pengajuanpkl, String id_siswa, String id_dudi, String nama_siswa, String kelas, String id_guru, String status_validasi, String status_keanggotaan, String tanggal_masuk, String tanggal_keluar) {
         this.id_pengajuanpkl = id_pengajuanpkl;
         this.id_siswa = id_siswa;
         this.id_dudi = id_dudi;
@@ -46,6 +49,7 @@ public class DataPermohonanPKL {
         this.tanggal_keluar = tanggal_keluar;
         this.id_guru = id_guru;
         this.status_validasi = status_validasi;
+        this.status_keanggotaan = status_keanggotaan;
     }
 
     public String getId() {
@@ -118,5 +122,13 @@ public class DataPermohonanPKL {
 
     public void setKelas(String kelas) {
         this.kelas = kelas;
+    }
+
+    public String getStatus_keanggotaan(){
+        return status_keanggotaan;
+    }
+
+    public void setStatus_keanggotaan(String status_keanggotaan){
+        this.status_keanggotaan = status_keanggotaan;
     }
 }

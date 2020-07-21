@@ -9,7 +9,7 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="8dp">
 
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:padding="16dp"
@@ -30,7 +30,6 @@
 
     <TextView
         android:id="@+id/nama_dudi"
-        android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +37,7 @@
 
     <TextView
         android:id="@+id/tanggal_masuk"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="25dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +45,7 @@
 
     <TextView
         android:id="@+id/tanggal_keluar"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +53,7 @@
 
     <TextView
         android:id="@+id/nama_guru"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="75dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,12 +61,28 @@
 
     <TextView
         android:id="@+id/status_validasi"
-        android:layout_marginBottom="5dp"
         android:textStyle="bold"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FF0000"/>
+        android:textColor="#37FF00"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/status_validasi1"
+            android:textStyle="bold"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFDD00"/>
+
+        <TextView
+            android:id="@+id/status_validasi2"
+            android:textStyle="bold"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"/>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

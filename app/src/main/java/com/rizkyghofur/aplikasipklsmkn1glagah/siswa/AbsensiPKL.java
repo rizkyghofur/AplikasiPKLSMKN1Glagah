@@ -72,6 +72,7 @@ public class AbsensiPKL extends AppCompatActivity {
     public static final String TAG_NAMA_SISWA = "nama_siswa";
     private static final String TAG_MESSAGE = "status_pesan";
     private static String url1 = Server.URL + "cek_absensi_pkl_siswa.php";
+    private static String url2 = Server.URL + "cek_absensi_pkl_siswa_keanggotaan.php";
     String tag_json_obj = "json_obj_req";
     String success;
 
@@ -107,11 +108,60 @@ public class AbsensiPKL extends AppCompatActivity {
         fab_tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogForm("", "","SIMPAN");
+                cekKeanggotaan();
             }
         });
         MuatData();
 
+    }
+
+    private void cekKeanggotaan() {
+        StringRequest strReq = new StringRequest(Request.Method.GET, url2 + "?id_siswa=" + user, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Login Respon: " + response.toString());
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    success = jObj.getString("status_kode");
+                    if (success.equals("1")) {
+                        DialogForm("", "","SIMPAN");
+                    } else{
+                        Log.e("Absensi PKL", jObj.toString());
+                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Maaf, Jaringan Bermasalah", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
+                Log.e(TAG, "AbsensiPKL Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+        };
+        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
 
     private void DialogForm(final String tanggalx, String siswax, String button) {

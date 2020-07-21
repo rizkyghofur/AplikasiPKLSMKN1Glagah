@@ -147,7 +147,6 @@ public class PermohonanPKL extends AppCompatActivity {
                 hasil = txt_hasil.getText().toString();
                 simpanData(hasil);
                 dialog.dismiss();
-                finish();
             }
         });
 
@@ -174,7 +173,7 @@ public class PermohonanPKL extends AppCompatActivity {
                    Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_LONG).show();
                    PermohonanPKL.mInstance.MuatData();
                    finish();
-                } else if (status_kode == 2) {
+                } else if (status_kode == 0) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 3) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();

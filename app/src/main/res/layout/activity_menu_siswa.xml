@@ -19,7 +19,7 @@
         android:id="@+id/user_photo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="35dp"
         android:src="@mipmap/login"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         android:id="@+id/user_name"
         android:textColor="#ffffff"
         android:fontFamily="@font/mo_re"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="3dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,12 +77,25 @@
         app:layout_constraintTop_toTopOf="@id/user_name"/>
 
     <TextView
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:text="Status Validasi"
         android:id="@+id/status_validasi"
         android:fontFamily="@font/mo_re"
         android:textColor="#ffffff"
         android:layout_marginTop="65dp"
+        android:layout_marginStart="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/user_photo"
+        app:layout_constraintTop_toTopOf="@id/user_name"/>
+
+    <TextView
+        android:textSize="12sp"
+        android:text="Status Keanggotaan"
+        android:id="@+id/status_keanggotaan"
+        android:fontFamily="@font/mo_re"
+        android:textColor="#ffffff"
+        android:layout_marginTop="95dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

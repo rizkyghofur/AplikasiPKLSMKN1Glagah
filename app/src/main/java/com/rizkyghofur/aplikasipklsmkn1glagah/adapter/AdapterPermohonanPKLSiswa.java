@@ -56,7 +56,13 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
         holder.nama_guru.setText("Guru Pembimbing : " + PermohonanPKLSiswa.getId_guru());
         holder.tanggal_masuk.setText("Tanggal Masuk : " + PermohonanPKLSiswa.getTanggal_masuk());
         holder.tanggal_keluar.setText("Tanggal Keluar : " + PermohonanPKLSiswa.getTanggal_keluar());
-        holder.status_validasi.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+        if(PermohonanPKLSiswa.getStatus_validasi().equals("Diterima")) {
+            holder.status_validasi.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+        } else if(PermohonanPKLSiswa.getStatus_validasi().equals("Proses Pengajuan")){
+            holder.status_validasi1.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+        } else{
+            holder.status_validasi2.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+        }
     }
 
     @Override
@@ -65,7 +71,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView id_permohonan_pkl, id_siswa, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi;
+        private TextView id_permohonan_pkl, id_siswa, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi, status_validasi1, status_validasi2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +83,8 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
             nama_dudi = itemView.findViewById(R.id.nama_dudi);
             nama_guru = itemView.findViewById(R.id.nama_guru);
             status_validasi = itemView.findViewById(R.id.status_validasi);
+            status_validasi1 = itemView.findViewById(R.id.status_validasi1);
+            status_validasi2 = itemView.findViewById(R.id.status_validasi2);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
