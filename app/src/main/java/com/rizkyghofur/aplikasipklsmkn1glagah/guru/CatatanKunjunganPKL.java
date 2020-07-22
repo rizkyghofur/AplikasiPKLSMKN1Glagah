@@ -1,5 +1,6 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,6 +42,7 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
     private AdapterCatatanKunjunganPKLGuru adapter;
     private ArrayList<DataCatatanKunjunganPKLGuru> arrayCatatanKunjungan;
     public static CatatanKunjunganPKL mInstance;
+    ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,21 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
         MuatData();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     public void MuatData() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         String url = Server.URL + "catatankunjunganpkl_guru.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_guru="+user, new Response.Listener<String>() {
             @Override
@@ -78,6 +94,7 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
                     Toast.makeText(CatatanKunjunganPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -97,6 +114,7 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(CatatanKunjunganPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "data_catatan_kunjungan_pkl");

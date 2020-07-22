@@ -84,7 +84,7 @@ public class KompetensiDasar extends AppCompatActivity {
         listkompetensidasar.clear();
         pDialog = new ProgressDialog(KompetensiDasar.this);
         pDialog.setCancelable(true);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_kompetensi_dasar + "?id_mapel=" + txt_hasil_mapel.getText().toString(),
@@ -142,7 +142,7 @@ public class KompetensiDasar extends AppCompatActivity {
         listmapel.clear();
         pDialog = new ProgressDialog(KompetensiDasar.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_mapel,

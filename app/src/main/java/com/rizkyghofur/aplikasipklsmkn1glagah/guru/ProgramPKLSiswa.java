@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,10 +52,12 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     SharedPreferences sharedpreferences;
     EditText tanggal_program;
     Button cari;
+    ProgressDialog pDialog;
 
     private static final String TAG = ProgramPKL.class.getSimpleName();
     public static final String TAG_USER = "id";
     private static String programpkl = Server.URL + "guru_program_pkl_siswa.php";
+    private static String programpkl_filter = Server.URL + "guru_program_pkl_siswa_filter.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_program_pkl";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
@@ -92,6 +95,9 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
             }
         });
 
+        String date = dateFormatter.format(Calendar.getInstance().getTime());
+        tanggal_program.setText(date);
+
         cari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,11 +127,24 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         callVolley();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
-        JsonArrayRequest jArr = new JsonArrayRequest(programpkl+"?id_guru="+user, new Response.Listener<JSONArray>() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
+        JsonArrayRequest jArr = new JsonArrayRequest(programpkl_filter+"?id_guru="+user+"&tanggal="+tanggal_program.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
@@ -151,6 +170,7 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -181,8 +201,11 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     private void callVolley1(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
-        JsonArrayRequest jArr = new JsonArrayRequest(programpkl+"?id_guru="+user, new Response.Listener<JSONArray>() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
+        JsonArrayRequest jArr = new JsonArrayRequest(programpkl_filter+"?id_guru="+user+"&tanggal="+tanggal_program.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
@@ -207,6 +230,7 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -229,6 +253,7 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);

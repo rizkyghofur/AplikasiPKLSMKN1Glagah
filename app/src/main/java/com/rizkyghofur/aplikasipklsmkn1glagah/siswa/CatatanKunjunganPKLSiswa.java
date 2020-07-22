@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
     AdapterCatatanKunjunganPKLSiswa adapter;
     String user;
     SharedPreferences sharedpreferences;
+    ProgressDialog pDialog;
 
     private static final String TAG = CatatanKunjunganPKL.class.getSimpleName();
     public static final String TAG_ID_USER = "id";
@@ -101,7 +103,10 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
     private void callVolley(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(catatankunjunganpkl+"?id_siswa="+user, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -120,11 +125,13 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(CatatanKunjunganPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -147,8 +154,19 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

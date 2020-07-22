@@ -1,6 +1,7 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,6 +52,7 @@ public class ProgramPKL extends AppCompatActivity {
     public static ProgramPKL mInstance;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
+    ProgressDialog pDialog;
     EditText tanggal;
     Button cari;
 
@@ -105,7 +108,21 @@ public class ProgramPKL extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     public void MuatData() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         String url = Server.URL + "program_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_siswa="+user, new Response.Listener<String>() {
             @Override
@@ -120,6 +137,7 @@ public class ProgramPKL extends AppCompatActivity {
                     Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -139,12 +157,17 @@ public class ProgramPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(ProgramPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "data_program_pkl");
     }
 
     public void MuatData1() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         adapter.notifyDataSetChanged();
         String url = Server.URL + "program_pkl_siswa_filter.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_siswa="+user+"&tanggal="+tanggal.getText().toString(), new Response.Listener<String>() {
@@ -160,6 +183,7 @@ public class ProgramPKL extends AppCompatActivity {
                     Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -179,6 +203,7 @@ public class ProgramPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(ProgramPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "data_program_pkl");

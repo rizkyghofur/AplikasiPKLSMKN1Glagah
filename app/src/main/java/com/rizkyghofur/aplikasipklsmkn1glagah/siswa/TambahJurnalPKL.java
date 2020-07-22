@@ -154,7 +154,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
         listmapel.clear();
         pDialog = new ProgressDialog(TambahJurnalPKL.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_mapel,
@@ -211,7 +211,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
         listkompetensidasar.clear();
         pDialog = new ProgressDialog(TambahJurnalPKL.this);
         pDialog.setCancelable(true);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_kompetensi_dasar + "?id_mapel=" + txt_hasil_mapel.getText().toString(),
@@ -288,6 +288,10 @@ public class TambahJurnalPKL extends AppCompatActivity {
     }
 
     private void simpanData(String tanggal, String kompetensi_dasar, String topik_pekerjaan) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Menyimpan data...");
+        showDialog();
         String url = Server.URL + "tambah_jurnal_pkl_siswa.php?id_siswa=" + user + "&tanggal=" + tanggal + "&id_kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -320,6 +324,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(TambahJurnalPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -339,6 +344,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(TambahJurnalPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "tambah_jurnal_pkl");

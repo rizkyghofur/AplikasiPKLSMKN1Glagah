@@ -3,6 +3,8 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -36,6 +38,7 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
     SwipeRefreshLayout swipe;
     List<DataCatatanKunjunganPKL> itemList = new ArrayList<DataCatatanKunjunganPKL>();
     AdapterCatatanKunjunganPKLKaKomp adapter;
+    ProgressDialog pDialog;
 
     private static final String TAG = CatatanKunjunganPKL.class.getSimpleName();
     public static final String TAG_USER = "id";
@@ -81,7 +84,21 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
         callVolley();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
@@ -104,11 +121,13 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(CatatanKunjunganPKLKakomp.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -131,6 +150,7 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);

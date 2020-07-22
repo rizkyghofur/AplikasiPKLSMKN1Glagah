@@ -1,5 +1,6 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
     Button cari;
     String id_jurusan;
     SharedPreferences sharedpreferences;
+    ProgressDialog pDialog;
 
     private static final String TAG = InfoDUDI.class.getSimpleName();
 
@@ -108,10 +110,23 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
         callVolley();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(infodudi + "?id_jurusan=" + id_jurusan, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -134,11 +149,13 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(InfoDUDI.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -161,6 +178,7 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
@@ -169,7 +187,10 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
     private void callVolley1(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(infodudi_search+ "?id_jurusan=" + id_jurusan + "&nama_dudi="+nama_dudi.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -192,11 +213,13 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(InfoDUDI.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -204,6 +227,7 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);

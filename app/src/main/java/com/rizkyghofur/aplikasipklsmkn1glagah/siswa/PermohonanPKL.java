@@ -100,7 +100,6 @@ public class PermohonanPKL extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cekPengajuanPKL();
-//                DialogForm("", "SIMPAN");
             }
         });
         MuatData();
@@ -162,6 +161,10 @@ public class PermohonanPKL extends AppCompatActivity {
     }
 
     private void simpanData(String id_dudi) {
+        pDialog = new ProgressDialog(PermohonanPKL.this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Menyimpan data...");
+        showDialog();
         String url = Server.URL + "tambah_permohonan_pkl_siswa.php?id_siswa=" + user + "&id_dudi=" + id_dudi;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -172,6 +175,7 @@ public class PermohonanPKL extends AppCompatActivity {
                 if (status_kode == 1) {
                    Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_LONG).show();
                    PermohonanPKL.mInstance.MuatData();
+                   hideDialog();
                    finish();
                 } else if (status_kode == 0) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
@@ -213,6 +217,7 @@ public class PermohonanPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(PermohonanPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "tambah_permohonan_pkl");
@@ -223,6 +228,10 @@ public class PermohonanPKL extends AppCompatActivity {
     }
 
     public void MuatData() {
+        pDialog = new ProgressDialog(PermohonanPKL.this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         String url = Server.URL + "permohonan_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user, new Response.Listener<String>() {
             @Override
@@ -237,6 +246,7 @@ public class PermohonanPKL extends AppCompatActivity {
                     Toast.makeText(PermohonanPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -256,6 +266,7 @@ public class PermohonanPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(PermohonanPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "data_permohonan_pkl");
@@ -265,7 +276,7 @@ public class PermohonanPKL extends AppCompatActivity {
         listdudi.clear();
         pDialog = new ProgressDialog(PermohonanPKL.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url + "?id_jurusan=" + id_jurusan,

@@ -1,6 +1,7 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class TambahCatatanKunjunganPKL extends AppCompatActivity {
     public static final String TAG_USER = "id";
     public DatePickerDialog datePickerDialog;
     public SimpleDateFormat dateFormatter;
+    ProgressDialog pDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,7 +100,21 @@ public class TambahCatatanKunjunganPKL extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void simpanData(String tanggal_kunjungan, String catatan_pembimbing) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         String url = Server.URL + "tambahcatatankunjunganpkl_guru.php?id_guru=" + user + "&tanggal_kunjungan=" + tanggal_kunjungan + "&catatan_pembimbing=" + catatan_pembimbing;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -131,6 +147,7 @@ public class TambahCatatanKunjunganPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(TambahCatatanKunjunganPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -150,6 +167,7 @@ public class TambahCatatanKunjunganPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(TambahCatatanKunjunganPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "tambah_catatan_kunjungan_pkl");

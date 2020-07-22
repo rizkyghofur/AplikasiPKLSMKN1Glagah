@@ -8,12 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -246,6 +243,10 @@ public class AbsensiPKL extends AppCompatActivity {
     }
 
     private void simpanData(String id_siswa, String tanggal, String keterangan) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Sedang menyimpan data ...");
+        showDialog();
         String url = Server.URL + "tambah_absensi_pkl_siswa.php?id_siswa=" + id_siswa + "&tanggal_absensi=" + tanggal + "&keterangan=" + keterangan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -277,6 +278,7 @@ public class AbsensiPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(AbsensiPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -296,6 +298,7 @@ public class AbsensiPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "tambah_jurnal_pkl");
@@ -306,6 +309,10 @@ public class AbsensiPKL extends AppCompatActivity {
     }
 
     public void MuatData() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data ...");
+        showDialog();
         String url = Server.URL + "absensi_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user + "&id_dudi=" + id_dudi, new Response.Listener<String>() {
             @Override
@@ -320,6 +327,7 @@ public class AbsensiPKL extends AppCompatActivity {
                     Toast.makeText(AbsensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -339,6 +347,7 @@ public class AbsensiPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         });
         AppController.getInstance().addToQueue(request, "data_absensi_pkl");
@@ -348,7 +357,7 @@ public class AbsensiPKL extends AppCompatActivity {
         listsiswa.clear();
         pDialog = new ProgressDialog(AbsensiPKL.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url+"?id_siswa=" + user + "&id_dudi=" + id_dudi,

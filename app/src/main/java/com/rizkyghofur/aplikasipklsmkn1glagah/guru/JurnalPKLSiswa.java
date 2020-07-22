@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
     Button cari;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
+    ProgressDialog pDialog;
 
     private static final String TAG = JurnalPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
@@ -125,7 +127,21 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
         callVolley();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
@@ -150,11 +166,13 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -177,6 +195,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
@@ -185,7 +204,10 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
     private void callVolley1(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(jurnalpklfilter+"?id_guru="+user+"&tanggal="+tanggal_jurnal.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -207,11 +229,13 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -234,6 +258,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);

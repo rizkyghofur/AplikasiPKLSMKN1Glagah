@@ -1,5 +1,6 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -28,6 +29,9 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPengajuanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPermohonanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
+import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.AbsensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.InfoDUDI;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +47,7 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
     AdapterPengajuanPKL adapter;
     Button cari;
     TextView setspinner;
+    ProgressDialog pDialog;
 
     private static final String TAG = PengajuanPKLSiswa.class.getSimpleName();
 
@@ -123,10 +128,23 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
         callVolley();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(permohonanpkl, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -151,11 +169,13 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(PengajuanPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -178,12 +198,17 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
     }
 
     private void callVolley1(){
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
@@ -210,11 +235,13 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(PengajuanPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -237,6 +264,7 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);

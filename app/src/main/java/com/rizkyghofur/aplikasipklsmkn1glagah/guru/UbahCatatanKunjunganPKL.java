@@ -1,6 +1,7 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,7 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
     private String ed_id_catatan_kunjungan_pkl;
     Toolbar toolbar;
     TextView texttoolbar;
+    ProgressDialog pDialog;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -82,7 +84,21 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
         });
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void updateData(final String id_catatan_kunjungan_pkl, final String id_guru, final String tanggal_kunjungan, final String catatan_pembimbing) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         String url = Server.URL + "ubahcatatankunjunganpkl_guru.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -115,6 +131,7 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(UbahCatatanKunjunganPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -134,6 +151,7 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(UbahCatatanKunjunganPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }) {
             @NonNull

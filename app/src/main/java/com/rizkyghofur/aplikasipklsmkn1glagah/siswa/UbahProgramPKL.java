@@ -154,7 +154,7 @@ public class UbahProgramPKL extends AppCompatActivity {
         listmapel.clear();
         pDialog = new ProgressDialog(UbahProgramPKL.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_mapel,
@@ -211,7 +211,7 @@ public class UbahProgramPKL extends AppCompatActivity {
         listkompetensidasar.clear();
         pDialog = new ProgressDialog(UbahProgramPKL.this);
         pDialog.setCancelable(true);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_kompetensi_dasar + "?id_mapel=" + txt_hasil_mapel.getText().toString(),
@@ -275,6 +275,10 @@ public class UbahProgramPKL extends AppCompatActivity {
     }
 
     private void updateData(final String id_program_pkl, final String id_siswa, final String tanggal, final String id_kompetensi_dasar, final String topik_pekerjaan) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Menyimpan data...");
+        showDialog();
         String url = Server.URL + "ubah_program_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

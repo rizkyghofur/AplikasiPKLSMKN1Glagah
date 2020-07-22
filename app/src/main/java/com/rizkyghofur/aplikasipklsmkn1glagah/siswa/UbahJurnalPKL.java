@@ -151,7 +151,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
         listmapel.clear();
         pDialog = new ProgressDialog(UbahJurnalPKL.this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_mapel,
@@ -208,7 +208,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
         listkompetensidasar.clear();
         pDialog = new ProgressDialog(UbahJurnalPKL.this);
         pDialog.setCancelable(true);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Memuat data...");
         showDialog();
 
         JsonArrayRequest jArr = new JsonArrayRequest(url_kompetensi_dasar + "?id_mapel=" + txt_hasil_mapel.getText().toString(),
@@ -272,6 +272,10 @@ public class UbahJurnalPKL extends AppCompatActivity {
     }
 
     private void updateData(final String id_jurnal_pkl, final String id_siswa, final String tanggal, final String id_kompetensi_dasar, final String topik_pekerjaan) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Menyimpan data...");
+        showDialog();
         String url = Server.URL + "ubah_jurnal_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -282,6 +286,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
                 if (status_kode == 1) {
                     Toast.makeText(UbahJurnalPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                     JurnalPKL.mInstance.MuatData();
+                    hideDialog();
                     finish();
                 } else if (status_kode == 2) {
                     Toast.makeText(UbahJurnalPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
@@ -304,6 +309,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(UbahJurnalPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -323,6 +329,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
                 } else {
                     Toast.makeText(UbahJurnalPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
+                hideDialog();
             }
         }) {
             @NonNull

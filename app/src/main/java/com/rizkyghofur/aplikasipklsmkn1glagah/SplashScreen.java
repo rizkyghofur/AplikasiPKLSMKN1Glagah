@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.Window;
 import android.view.WindowManager;
 import androidx.appcompat.app.AlertDialog;
@@ -12,9 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class SplashScreen extends AppCompatActivity {
 

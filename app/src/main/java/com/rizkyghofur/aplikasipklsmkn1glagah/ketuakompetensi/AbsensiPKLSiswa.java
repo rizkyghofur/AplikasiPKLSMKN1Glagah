@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     SharedPreferences sharedpreferences;
     EditText tanggal_absensi;
     Button cari;
+    ProgressDialog pDialog;
 
     private static final String TAG = AbsensiPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
@@ -137,10 +139,23 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         datePickerDialog.show();
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
     private void callVolley(){
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -161,11 +176,13 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(AbsensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -188,12 +205,17 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
     }
 
     private void callVolley1(){
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data...");
+        showDialog();
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
@@ -217,11 +239,13 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
                         itemList.add(item);
                     } catch (JSONException e) {
+                        Toast.makeText(AbsensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
                 adapter.notifyDataSetChanged();
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         }, new Response.ErrorListener() {
 
@@ -244,6 +268,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
+                hideDialog();
             }
         });
         AppController.getInstance().addToRequestQueue(jArr);
