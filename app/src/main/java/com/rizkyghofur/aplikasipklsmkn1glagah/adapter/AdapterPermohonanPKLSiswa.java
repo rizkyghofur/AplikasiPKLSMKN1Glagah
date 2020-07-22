@@ -53,7 +53,11 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
         holder.id_permohonan_pkl.setText(PermohonanPKLSiswa.getId());
         holder.id_siswa.setText(PermohonanPKLSiswa.getId_siswa());
         holder.nama_dudi.setText("DUDI : " + PermohonanPKLSiswa.getId_dudi());
-        holder.nama_guru.setText("Guru Pembimbing : " + PermohonanPKLSiswa.getId_guru());
+        if(PermohonanPKLSiswa.getId_guru() == null){
+            holder.nama_guru.setText("Guru Pembimbing : Belum Ditentukan");
+        } else{
+            holder.nama_guru.setText("Guru Pembimbing : " + PermohonanPKLSiswa.getId_guru());
+        }
         holder.tanggal_masuk.setText("Tanggal Masuk : " + PermohonanPKLSiswa.getTanggal_masuk());
         holder.tanggal_keluar.setText("Tanggal Keluar : " + PermohonanPKLSiswa.getTanggal_keluar());
         if(PermohonanPKLSiswa.getStatus_validasi().equals("Diterima")) {

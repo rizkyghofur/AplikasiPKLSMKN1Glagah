@@ -64,7 +64,11 @@ public class AdapterDataDUDI extends BaseAdapter {
         jenis_usaha.setText("Jenis Usaha : " + data.getJenis_usaha());
         nama_pimpinan.setText("Nama Pimpinan : " + data.getNama_pimpinan());
         no_telp_pimpinan.setText("No. Telp. Pimpinan : "+ data.getNo_telp_pimpinan());
-        kuota.setText("Kuota : " + data.getKuota());
+        if(data.getKuota().equals("0")){
+            kuota.setText("Kuota penuh");
+        } else{
+            kuota.setText("Kuota : " + data.getKuota());
+        }
         return convertView;
     }
 }
