@@ -40,7 +40,7 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataKelompokSiswa;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
-import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.ResponStatus;
+import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 import org.json.JSONArray;
 import org.json.JSONException;

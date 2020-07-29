@@ -3,7 +3,6 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,20 +38,16 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPermohonanPKLSiswa;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataListDUDI;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPermohonanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
-import com.rizkyghofur.aplikasipklsmkn1glagah.guru.MenuGuruPembimbing;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
-import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.ResponStatus;
+import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-import com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi.MenuKaKomp;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PermohonanPKL extends AppCompatActivity {
 
@@ -145,7 +140,7 @@ public class PermohonanPKL extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 hasil = txt_hasil.getText().toString();
                 simpanData(hasil);
-                dialog.dismiss();
+                hideDialog();
             }
         });
 
@@ -153,8 +148,7 @@ public class PermohonanPKL extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                kosong();
+                hideDialog();
             }
         });
         dialog.show();
@@ -172,13 +166,16 @@ public class PermohonanPKL extends AppCompatActivity {
                 ResponStatus responStatus = new Gson().fromJson(response, ResponStatus.class);
                 int status_kode = responStatus.getStatus_kode();
                 String status_pesan = responStatus.getStatus_pesan();
-                if (status_kode == 1) {
+                if (status_kode == 0) {
                    Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_LONG).show();
                    PermohonanPKL.mInstance.MuatData();
                    hideDialog();
                    finish();
-                } else if (status_kode == 0) {
-                    Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                } else if (status_kode == 1) {
+                    Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_LONG).show();
+                    PermohonanPKL.mInstance.MuatData();
+                    hideDialog();
+                    finish();
                 } else if (status_kode == 3) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 4) {

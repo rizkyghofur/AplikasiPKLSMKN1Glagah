@@ -1,4 +1,4 @@
-package com.rizkyghofur.aplikasipklsmkn1glagah.adapter;
+package com.rizkyghofur.aplikasipklsmkn1glagah.handler;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

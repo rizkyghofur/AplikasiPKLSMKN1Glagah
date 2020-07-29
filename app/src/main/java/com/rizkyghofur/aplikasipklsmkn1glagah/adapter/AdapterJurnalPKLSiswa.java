@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataJurnalPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
+import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.UbahJurnalPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
@@ -57,11 +58,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
         holder.tanggal.setText("Tanggal Kunjungan : " + JurnalPKL.getTanggal());
         holder.kompetensi_dasar.setText("Rujukan Kompetensi Dasar : " + JurnalPKL.getKompetensi_dasar());
         holder.topik_pekerjaan.setText("Topik Pekerjaan : " + JurnalPKL.getTopik_pekerjaan());
-        if(JurnalPKL.getStatus().equals("Tervalidasi")){
-            holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());
-        } else{
-            holder.status1.setText("Status Validasi : " + JurnalPKL.getStatus());
-        }
+        holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());
         holder.catatan.setText("Catatan : " + JurnalPKL.getCatatan());
     }
 
@@ -71,7 +68,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView id_jurnal_pkl, id_siswa, tanggal, kompetensi_dasar, topik_pekerjaan, status, status1, catatan;
+        private TextView id_jurnal_pkl, id_siswa, tanggal, kompetensi_dasar, topik_pekerjaan, status, status1, status2, catatan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +80,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
             topik_pekerjaan = itemView.findViewById(R.id.topik_pekerjaan);
             status = itemView.findViewById(R.id.status_validasi);
             status1 = itemView.findViewById(R.id.status_validasi1);
+            status2 = itemView.findViewById(R.id.status_validasi2);
             catatan = itemView.findViewById(R.id.catatan);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {

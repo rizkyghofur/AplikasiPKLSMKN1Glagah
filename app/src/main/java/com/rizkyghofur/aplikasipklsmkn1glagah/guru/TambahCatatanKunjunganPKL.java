@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
-import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.ResponStatus;
+import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
