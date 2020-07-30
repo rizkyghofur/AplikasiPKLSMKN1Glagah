@@ -175,6 +175,7 @@ public class PermohonanPKL extends AppCompatActivity {
                 } else if (status_kode == 0) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                     hideDialog();
+                    finish();
                 } else if (status_kode == 3) {
                     Toast.makeText(PermohonanPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 4) {

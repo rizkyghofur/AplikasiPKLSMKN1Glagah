@@ -49,7 +49,7 @@ public class AdapterListDUDI extends BaseAdapter {
         TextView dudi = convertView.findViewById(R.id.nama_dudi);
 
         DataListDUDI data = new DataListDUDI();
-        if(data!= null && item.size() !=0){
+        if(data != null && item.size() !=0){
             data = item.get(position);
         }
 
