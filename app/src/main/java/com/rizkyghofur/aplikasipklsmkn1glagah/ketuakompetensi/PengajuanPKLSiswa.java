@@ -63,7 +63,7 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
     public static final String TAG_ID_GURU = "nama_guru";
     public static final String TAG_STATUS_VALIDASI = "status_validasi";
 
-    private String[] Item = {"Belum Tervalidasi","Proses Pengajuan","Diterima","Ditolak"};
+    private String[] Item = {"Pilih Status Pengajuan","Belum Tervalidasi","Proses Pengajuan","Diterima","Ditolak"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
