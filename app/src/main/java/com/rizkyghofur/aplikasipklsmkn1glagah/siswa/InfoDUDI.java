@@ -66,8 +66,6 @@ public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siswa_info_dudi);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         swipe   = findViewById(R.id.swipe_refresh_layout);
         list    = findViewById(R.id.list);

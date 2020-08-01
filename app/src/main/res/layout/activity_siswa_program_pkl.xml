@@ -34,10 +34,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <EditText
+    <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
+        android:textSize="20sp"
         android:background="@drawable/shapeemail"
         android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
         android:layout_marginLeft="10dp"
@@ -47,10 +48,9 @@
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
         android:id="@+id/input_tanggal"
-        android:hint=" Pilih Tanggal Program PKL"
+        android:hint=" Tanggal Program PKL"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:editable="false"/>
+        android:layout_alignParentStart="true"/>
 
     <Button
         android:layout_marginTop="75dp"

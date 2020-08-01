@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +78,8 @@ public class AbsensiPKL extends AppCompatActivity {
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
     View dialogView;
-    EditText txt_hasil, txt_tanggal, input_tanggal;
+    EditText txt_hasil;
+    TextView txt_tanggal, input_tanggal;
     Spinner spinner_siswa;
     AdapterKelompokSiswa adapter1;
     List<DataKelompokSiswa> listsiswa = new ArrayList<DataKelompokSiswa>();
@@ -110,6 +113,46 @@ public class AbsensiPKL extends AppCompatActivity {
         });
         MuatData();
 
+        input_tanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TanggalCari();
+            }
+        });
+
+        cari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MuatData1();
+            }
+        });
+
+    }
+
+    private void TanggalCari() {
+        Calendar newCalendar = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                input_tanggal.setText(dateFormatter.format(newDate.getTime()));
+            }
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
+    private void TanggalMasuk() {
+        Calendar newCalendar = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                txt_tanggal.setText(dateFormatter.format(newDate.getTime()));
+            }
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
     }
 
     private void cekKeanggotaan() {
@@ -178,6 +221,13 @@ public class AbsensiPKL extends AppCompatActivity {
         String date = dateFormatter.format(Calendar.getInstance().getTime());
         txt_tanggal.setText(date);
 
+        txt_tanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TanggalMasuk();
+            }
+        });
+
         final Spinner spinner_keterangan = dialogView.findViewById(R.id.spinner_keterangan);
 
         spinner_keterangan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -197,7 +247,13 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                txt_hasil.setText(listsiswa.get(position).getId_siswa());
+                if (listsiswa.size() > 0) {
+                    txt_hasil.setText(listsiswa.get(position).getId_siswa());
+                }
+                else{
+                    DataKelompokSiswa item = new DataKelompokSiswa();
+                    listsiswa.add(item);
+                }
             }
 
             @Override
@@ -302,6 +358,7 @@ public class AbsensiPKL extends AppCompatActivity {
             }
         });
         AppController.getInstance().addToQueue(request, "tambah_jurnal_pkl");
+        hideDialog();
     }
 
     private void kosong() {
@@ -353,13 +410,57 @@ public class AbsensiPKL extends AppCompatActivity {
         AppController.getInstance().addToQueue(request, "data_absensi_pkl");
     }
 
+    public void MuatData1() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Memuat data ...");
+        showDialog();
+        String url = Server.URL + "absensi_pkl_siswa_filter.php";
+        StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user + "&id_dudi=" + id_dudi + "&tanggal_absensi=" + input_tanggal.getText().toString(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Type typeAbsensiPKL = new TypeToken<ArrayList<DataAbsensiPKL>>() {
+                    }.getType();
+                    arrayAbsensiPKL = new Gson().fromJson(response, typeAbsensiPKL);
+                    adapter = new AdapterAbsensiPKLSiswa(AbsensiPKL.this, arrayAbsensiPKL);
+                    recyclerView.setAdapter(adapter);
+                } catch (Exception e) {
+                    Toast.makeText(AbsensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                hideDialog();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError) {
+                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                }
+                hideDialog();
+            }
+        });
+        AppController.getInstance().addToQueue(request, "data_absensi_pkl");
+    }
+
     private void callData() {
         listsiswa.clear();
         pDialog = new ProgressDialog(AbsensiPKL.this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-
         JsonArrayRequest jArr = new JsonArrayRequest(url+"?id_siswa=" + user + "&id_dudi=" + id_dudi,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -406,8 +507,7 @@ public class AbsensiPKL extends AppCompatActivity {
     }
 
     private void cekAbsensiPKL() {
-        String date = dateFormatter.format(Calendar.getInstance().getTime());
-        StringRequest strReq = new StringRequest(Request.Method.GET, url1 + "?id_siswa=" + user + "&tanggal_absensi=" + date, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.GET, url1 + "?id_siswa=" + hasil + "&tanggal_absensi=" + tanggal, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "Login Respon: " + response.toString());

@@ -1,6 +1,8 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +58,9 @@ public class KompetensiDasar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakomp_kompetensi_dasar);
+
+        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBarAtas2);
 
         list = findViewById(R.id.list);
         txt_hasil_mapel = findViewById(R.id.setspinner);

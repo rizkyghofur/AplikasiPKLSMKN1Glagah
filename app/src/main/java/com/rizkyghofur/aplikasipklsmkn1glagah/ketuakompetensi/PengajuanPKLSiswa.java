@@ -69,8 +69,9 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakomp_pengajuanpkl);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBarAtas2);
 
         final Spinner ListStatusValidasi = findViewById(R.id.listItem);
         swipe   = findViewById(R.id.swipe_refresh_layout);

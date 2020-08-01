@@ -72,8 +72,9 @@ public class UbahProgramPKL extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siswa_program_pkl_tambah_ubah);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBarAtas2);
         texttoolbar = findViewById(R.id.texttoolbar);
         texttoolbar.setText("Ubah Data Program PKL");
 

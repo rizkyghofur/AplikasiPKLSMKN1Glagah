@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -54,6 +55,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
     String user;
     SharedPreferences sharedpreferences;
     ProgressDialog pDialog;
+    TextView nama_guru;
 
     private static final String TAG = CatatanKunjunganPKL.class.getSimpleName();
     public static final String TAG_ID_USER = "id";
@@ -75,6 +77,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
 
         swipe   = findViewById(R.id.swipe_refresh_layout);
         list    = findViewById(R.id.list);
+        nama_guru = findViewById(R.id.nama_guru_pembimbing);
 
         adapter = new AdapterCatatanKunjunganPKLSiswa(CatatanKunjunganPKLSiswa.this, itemList);
         list.setAdapter(adapter);
@@ -91,6 +94,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
                        }
                    }
         );
+
     }
 
     @Override
@@ -117,6 +121,8 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
                         JSONObject obj = response.getJSONObject(i);
 
                         DataCatatanKunjunganPKL item = new DataCatatanKunjunganPKL();
+
+                        nama_guru.setText("Guru Pembimbing : " + obj.getString(TAG_NAMA_GURU));
 
                         item.setId_catatan_kunjungan_pkl(obj.getString(TAG_ID_CATATAN_KUNJUNGAN_PKL));
                         item.setId_guru(obj.getString(TAG_NAMA_GURU));

@@ -75,8 +75,6 @@ public class TambahJurnalPKL extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siswa_jurnal_pkl_tambah_ubah);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         user = sharedpreferences.getString(TAG_ID_USER, "");

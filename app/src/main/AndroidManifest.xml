@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity
             android:screenOrientation="portrait"
             android:name=".Login" />
+
         <activity
             android:screenOrientation="portrait"
             android:name=".SplashScreen">
@@ -25,78 +27,125 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:screenOrientation="portrait"
             android:name=".ketuakompetensi.MenuKaKomp" />
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.JurnalPKLSiswa" />
+            android:name=".ketuakompetensi.JurnalPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.KompetensiDasar" />
+            android:name=".ketuakompetensi.KompetensiDasar">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.AbsensiPKLSiswa" />
+            android:name=".ketuakompetensi.AbsensiPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.CatatanKunjunganPKLKakomp" />
+            android:name=".ketuakompetensi.CatatanKunjunganPKLKakomp">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.PengajuanPKLSiswa" />
+            android:name=".ketuakompetensi.PengajuanPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
             android:name=".guru.MenuGuruPembimbing" />
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.JurnalPKLSiswa" />
+            android:name=".guru.JurnalPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.ProgramPKLSiswa" />
+            android:name=".guru.ProgramPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.CatatanKunjunganPKL" />
+            android:name=".guru.CatatanKunjunganPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.AbsensiPKLSiswa" />
+            android:name=".guru.AbsensiPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.TambahCatatanKunjunganPKL" />
+            android:name=".guru.TambahCatatanKunjunganPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.UbahCatatanKunjunganPKL" />
+            android:name=".guru.UbahCatatanKunjunganPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.MenuSiswa" />
+            android:name=".siswa.MenuSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.AbsensiPKL" />
+            android:name=".siswa.AbsensiPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.CatatanKunjunganPKLSiswa" />
+            android:name=".siswa.CatatanKunjunganPKLSiswa">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.JurnalPKL" />
+            android:name=".siswa.JurnalPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.TambahJurnalPKL" />
+            android:name=".siswa.TambahJurnalPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.UbahJurnalPKL" />
+            android:name=".siswa.UbahJurnalPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.ProgramPKL" />
+            android:name=".siswa.ProgramPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.TambahProgramPKL" />
+            android:name=".siswa.TambahProgramPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.UbahProgramPKL" />
+            android:name=".siswa.UbahProgramPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.PermohonanPKL" />
+            android:name=".siswa.PermohonanPKL">
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.InfoDUDI" />
+            android:name=".siswa.InfoDUDI">
+        </activity>
+
     </application>
 
 </manifest>

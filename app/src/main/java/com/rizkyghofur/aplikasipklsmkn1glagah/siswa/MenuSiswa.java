@@ -325,7 +325,7 @@ public class MenuSiswa extends AppCompatActivity {
     public void onBackPressed() {
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000){
-            backpressToast = Toast.makeText(getBaseContext(), "Tekan tombol kembali 2 kali untuk keluar", Toast.LENGTH_LONG);
+            backpressToast = Toast.makeText(getBaseContext(), "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_LONG);
             backpressToast.show();
             lastPress = currentTime;
 

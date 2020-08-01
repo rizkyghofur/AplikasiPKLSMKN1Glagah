@@ -32,11 +32,22 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/nama_guru_pembimbing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:textSize="16sp">
+    </TextView>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp">
+            android:layout_marginTop="100dp">
             <ListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"

@@ -70,8 +70,10 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakomp_absensi_pkl_siswa);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBarAtas2);
+
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         user = sharedpreferences.getString(TAG_USER, "");
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

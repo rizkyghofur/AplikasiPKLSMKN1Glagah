@@ -115,7 +115,13 @@ public class PermohonanPKL extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                txt_hasil.setText(listdudi.get(position).getId_dudi());
+                if(listdudi.size() > 0) {
+                    txt_hasil.setText(listdudi.get(position).getId_dudi());
+                }
+                else{
+                    DataListDUDI item = new DataListDUDI();
+                    listdudi.add(item);
+                }
             }
 
             @Override

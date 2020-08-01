@@ -45,8 +45,7 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guru_catatan_kunjungan_pkl_tambah_ubah);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         texttoolbar = findViewById(R.id.texttoolbar);
         texttoolbar.setText("Ubah Catatan Kunjungan PKL");
 

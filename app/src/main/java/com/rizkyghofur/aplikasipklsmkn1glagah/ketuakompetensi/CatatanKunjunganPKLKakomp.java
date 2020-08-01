@@ -53,8 +53,9 @@ public class CatatanKunjunganPKLKakomp extends AppCompatActivity implements Swip
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kakomp_catatan_kunjungan_pkl_guru);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBarAtas2);
 
         swipe   = findViewById(R.id.swipe_refresh_layout);
         list    = findViewById(R.id.list);
