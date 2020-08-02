@@ -54,19 +54,27 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
         holder.id_permohonan_pkl.setText(PermohonanPKLSiswa.getId());
         holder.id_siswa.setText(PermohonanPKLSiswa.getId_siswa());
         holder.nama_dudi.setText("DUDI : " + PermohonanPKLSiswa.getId_dudi());
-        if(PermohonanPKLSiswa.getId_guru() == null){
+        if (PermohonanPKLSiswa.getId_guru() == null){
             holder.nama_guru.setText("Guru Pembimbing : Belum Ditentukan");
         } else{
             holder.nama_guru.setText("Guru Pembimbing : " + PermohonanPKLSiswa.getId_guru());
         }
-        holder.tanggal_masuk.setText("Tanggal Masuk : " + PermohonanPKLSiswa.getTanggal_masuk());
-        holder.tanggal_keluar.setText("Tanggal Keluar : " + PermohonanPKLSiswa.getTanggal_keluar());
+        if (PermohonanPKLSiswa.getTanggal_masuk().equals("2020-01-01")) {
+            holder.tanggal_masuk.setText("Tanggal Masuk : Belum Ditentukan");
+        } else {
+            holder.tanggal_masuk.setText("Tanggal Masuk : " + PermohonanPKLSiswa.getTanggal_masuk());
+        }
+        if (PermohonanPKLSiswa.getTanggal_keluar().equals("2020-01-01")){
+            holder.tanggal_keluar.setText("Tanggal Keluar : Belum Ditentukan");
+        } else {
+            holder.tanggal_keluar.setText("Tanggal Keluar : " + PermohonanPKLSiswa.getTanggal_keluar());
+        }
         if(PermohonanPKLSiswa.getStatus_validasi().equals("Diterima")) {
-            holder.status_validasi.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+            holder.status_validasi.setText("Selamat, Permohonan PKL Anda diterima!");
         } else if(PermohonanPKLSiswa.getStatus_validasi().equals("Proses Pengajuan")){
-            holder.status_validasi1.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+            holder.status_validasi1.setText("Selamat, Permohonan PKL sedang diproses!");
         } else{
-            holder.status_validasi2.setText("Status Validasi : " + PermohonanPKLSiswa.getStatus_validasi());
+            holder.status_validasi2.setText("Maaf, Permohonan PKL Anda ditolak! Silahkan mengajukan permohonan PKL kembali.");
         }
     }
 
@@ -97,21 +105,37 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
                     final int position = getAdapterPosition();
                     final DataPermohonanPKL PermohonanPKLSiswa = arrayPermohonanPKLSiswa.get(position);
 
-                    String[] pilihan = {"Lihat", "Hapus"};
-                    new AlertDialog.Builder(context)
-                            .setTitle("Pilihan")
-                            .setItems(pilihan, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (which == 0) {
-                                        lihatDataPermohonanPKLSiswa(PermohonanPKLSiswa);
-                                    } else if (which == 1) { //
-                                        hapusDataPermohonanPKLSiswa(position, PermohonanPKLSiswa);
+                    if (PermohonanPKLSiswa.getStatus_validasi().equals("Belum Tervalidasi")) {
+                        String[] pilihan = {"Lihat", "Hapus"};
+                        new AlertDialog.Builder(context)
+                                .setTitle("Pilihan")
+                                .setItems(pilihan, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (which == 0) {
+                                            lihatDataPermohonanPKLSiswa(PermohonanPKLSiswa);
+                                        } else if (which == 1) {
+                                            hapusDataPermohonanPKLSiswa(position, PermohonanPKLSiswa);
+                                        }
                                     }
-                                }
-                            })
-                            .create()
-                            .show();
+                                })
+                                .create()
+                                .show();
+                    } else {
+                        String[] pilihan = {"Lihat"};
+                        new AlertDialog.Builder(context)
+                                .setTitle("Pilihan")
+                                .setItems(pilihan, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (which == 0) {
+                                            lihatDataPermohonanPKLSiswa(PermohonanPKLSiswa);
+                                        }
+                                    }
+                                })
+                                .create()
+                                .show();
+                    }
                     return false;
                 }
             });
@@ -124,7 +148,6 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
                             "\n\n Tanggal Masuk : \n" + PermohonanPKLSiswa.getTanggal_masuk() +
                             "\n\n Tanggal Keluar : \n" + PermohonanPKLSiswa.getTanggal_keluar() +
                             "\n\n Status Validasi : \n" + PermohonanPKLSiswa.getStatus_validasi();
-
 
             new AlertDialog.Builder(context)
                     .setTitle("Detail Permohonan PKL Siswa")

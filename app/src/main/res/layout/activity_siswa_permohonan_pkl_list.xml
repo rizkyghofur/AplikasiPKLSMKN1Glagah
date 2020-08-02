@@ -16,6 +16,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/status_validasi"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4CAE31"/>
+
+        <TextView
+            android:id="@+id/status_validasi1"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#A69524"/>
+
+        <TextView
+            android:id="@+id/status_validasi2"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"/>
+
     <TextView
         android:id="@+id/id_permohonan_pkl"
         android:layout_width="wrap_content"
@@ -31,13 +52,14 @@
     <TextView
         android:id="@+id/nama_dudi"
         android:textStyle="bold"
+        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#3F51B5"/>
 
     <TextView
         android:id="@+id/tanggal_masuk"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="65dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +67,7 @@
 
     <TextView
         android:id="@+id/tanggal_keluar"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,35 +75,11 @@
 
     <TextView
         android:id="@+id/nama_guru"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="115dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"/>
-
-    <TextView
-        android:id="@+id/status_validasi"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#37FF00"/>
-
-        <TextView
-            android:id="@+id/status_validasi1"
-            android:textStyle="bold"
-            android:layout_marginTop="100dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFDD00"/>
-
-        <TextView
-            android:id="@+id/status_validasi2"
-            android:textStyle="bold"
-            android:layout_marginTop="100dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FF0000"/>
 
     </RelativeLayout>
 
