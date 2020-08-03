@@ -54,6 +54,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
         holder.id_permohonan_pkl.setText(PermohonanPKLSiswa.getId());
         holder.id_siswa.setText(PermohonanPKLSiswa.getId_siswa());
         holder.nama_dudi.setText("DUDI : " + PermohonanPKLSiswa.getId_dudi());
+        holder.tanggal_pengajuan.setText("Tanggal Pengajuan : " + PermohonanPKLSiswa.getTanggal_pengajuan());
         if (PermohonanPKLSiswa.getId_guru() == null){
             holder.nama_guru.setText("Guru Pembimbing : Belum Ditentukan");
         } else{
@@ -84,7 +85,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView id_permohonan_pkl, id_siswa, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi, status_validasi1, status_validasi2;
+        private TextView id_permohonan_pkl, id_siswa, tanggal_pengajuan, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi, status_validasi1, status_validasi2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +94,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
             id_siswa = itemView.findViewById(R.id.id_siswa);
             tanggal_masuk = itemView.findViewById(R.id.tanggal_masuk);
             tanggal_keluar = itemView.findViewById(R.id.tanggal_keluar);
+            tanggal_pengajuan = itemView.findViewById(R.id.tanggal_pengajuan);
             nama_dudi = itemView.findViewById(R.id.nama_dudi);
             nama_guru = itemView.findViewById(R.id.nama_guru);
             status_validasi = itemView.findViewById(R.id.status_validasi);

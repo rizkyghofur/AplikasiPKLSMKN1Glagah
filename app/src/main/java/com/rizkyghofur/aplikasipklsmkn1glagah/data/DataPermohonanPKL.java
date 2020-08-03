@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataPermohonanPKL {
 
+
     @SerializedName("id_pengajuanpkl")
     @Expose
     private String id_pengajuanpkl;
@@ -23,6 +24,9 @@ public class DataPermohonanPKL {
     @SerializedName("tanggal_masuk")
     @Expose
     private String tanggal_masuk;
+    @SerializedName("tanggal_pengajuan")
+    @Expose
+    private String tanggal_pengajuan;
     @SerializedName("tanggal_keluar")
     @Expose
     private String tanggal_keluar;
@@ -39,7 +43,7 @@ public class DataPermohonanPKL {
     public DataPermohonanPKL() {
     }
 
-    public DataPermohonanPKL(String id_pengajuanpkl, String id_siswa, String id_dudi, String nama_siswa, String kelas, String id_guru, String status_validasi, String status_keanggotaan, String tanggal_masuk, String tanggal_keluar) {
+    public DataPermohonanPKL(String id_pengajuanpkl, String tanggal_pengajuan, String id_siswa, String id_dudi, String nama_siswa, String kelas, String id_guru, String status_validasi, String status_keanggotaan, String tanggal_masuk, String tanggal_keluar) {
         this.id_pengajuanpkl = id_pengajuanpkl;
         this.id_siswa = id_siswa;
         this.id_dudi = id_dudi;
@@ -48,6 +52,7 @@ public class DataPermohonanPKL {
         this.tanggal_masuk = tanggal_masuk;
         this.tanggal_keluar = tanggal_keluar;
         this.id_guru = id_guru;
+        this.tanggal_pengajuan = tanggal_pengajuan;
         this.status_validasi = status_validasi;
         this.status_keanggotaan = status_keanggotaan;
     }
@@ -122,6 +127,14 @@ public class DataPermohonanPKL {
 
     public void setKelas(String kelas) {
         this.kelas = kelas;
+    }
+
+    public String getTanggal_pengajuan(){
+        return tanggal_pengajuan;
+    }
+
+    public void setTanggal_pengajuan(String tanggal_pengajuan){
+        this.tanggal_pengajuan = tanggal_pengajuan;
     }
 
     public String getStatus_keanggotaan(){
