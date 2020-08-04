@@ -461,7 +461,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        JsonArrayRequest jArr = new JsonArrayRequest(url+"?id_siswa=" + user + "&id_dudi=" + id_dudi,
+        JsonArrayRequest jArr = new JsonArrayRequest(url+ "?id_dudi=" + id_dudi,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
