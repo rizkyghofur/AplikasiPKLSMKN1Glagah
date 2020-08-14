@@ -111,7 +111,7 @@ public class AdapterCatatanKunjunganPKLGuru extends RecyclerView.Adapter<Adapter
         }
 
         private void hapusDataCatatan(final int position, @NonNull DataCatatanKunjunganPKLGuru catatankunjungan) {
-            String url = Server.URL + "hapuscatatankunjunganpkl_guru.php?id_catatan_kunjungan_pkl=" + catatankunjungan.getId_catatan_kunjungan_pkl();
+            String url = Server.URL + "guru_hapus_catatan_kunjungan_pkl.php?id_catatan_kunjungan_pkl=" + catatankunjungan.getId_catatan_kunjungan_pkl();
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

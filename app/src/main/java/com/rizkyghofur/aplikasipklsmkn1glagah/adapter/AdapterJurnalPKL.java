@@ -6,9 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataJurnalPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
+
 import java.util.List;
 
 public class AdapterJurnalPKL extends BaseAdapter {
@@ -56,6 +60,7 @@ public class AdapterJurnalPKL extends BaseAdapter {
         TextView tanggal = convertView.findViewById(R.id.tanggal);
         TextView topik_pekerjaan = convertView.findViewById(R.id.topik_pekerjaan);
         TextView nama_dudi = convertView.findViewById(R.id.nama_dudi);
+        ImageView dokumentasi = convertView.findViewById(R.id.dokumentasi);
 
         DataJurnalPKL data = item.get(position);
 
@@ -66,6 +71,10 @@ public class AdapterJurnalPKL extends BaseAdapter {
         tanggal.setText("Tanggal : "+ data.getTanggal());
         topik_pekerjaan.setText("Topik Pekerjaan : "+ data.getTopik_pekerjaan());
         nama_dudi.setText("DUDI : "+ data.getId_dudi());
+        Glide.with(convertView)
+                .load(Server.URLDoc + data.getDokumentasi())
+                .placeholder(R.mipmap.ic_launcher)
+                .into(dokumentasi);
         return convertView;
     }
 }

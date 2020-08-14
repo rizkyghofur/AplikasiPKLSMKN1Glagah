@@ -16,7 +16,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -35,7 +34,6 @@ import java.util.Locale;
 
 public class TambahCatatanKunjunganPKL extends AppCompatActivity {
 
-    Toolbar toolbar;
     private EditText tanggal_kunjungan, catatan_pembimbing;
     private Button btn_simpan, btn_tanggal_kunjungan;
     String user;
@@ -113,7 +111,7 @@ public class TambahCatatanKunjunganPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        String url = Server.URL + "tambahcatatankunjunganpkl_guru.php?id_guru=" + user + "&tanggal_kunjungan=" + tanggal_kunjungan + "&catatan_pembimbing=" + catatan_pembimbing;
+        String url = Server.URL + "guru_tambah_catatan_kunjungan_pkl.php?id_guru=" + user + "&tanggal_kunjungan=" + tanggal_kunjungan + "&catatan_pembimbing=" + catatan_pembimbing;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -43,7 +43,6 @@ import java.util.Locale;
 
 public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    Toolbar toolbar;
     ListView list;
     SwipeRefreshLayout swipe;
     List<DataProgramPKL> itemList = new ArrayList<DataProgramPKL>();
@@ -56,7 +55,6 @@ public class ProgramPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
     private static final String TAG = ProgramPKL.class.getSimpleName();
     public static final String TAG_USER = "id";
-    private static String programpkl = Server.URL + "guru_program_pkl_siswa.php";
     private static String programpkl_filter = Server.URL + "guru_program_pkl_siswa_filter.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_program_pkl";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";

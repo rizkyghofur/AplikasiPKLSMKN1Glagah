@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataJurnalPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
@@ -60,6 +62,10 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
         holder.topik_pekerjaan.setText("Topik Pekerjaan : " + JurnalPKL.getTopik_pekerjaan());
         holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());
         holder.catatan.setText("Catatan : " + JurnalPKL.getCatatan());
+        Glide.with(context)
+                .load(Server.URLDoc + JurnalPKL.getDokumentasi())
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.dokumentasi);
     }
 
     @Override
@@ -69,6 +75,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView id_jurnal_pkl, id_siswa, tanggal, kompetensi_dasar, topik_pekerjaan, status, status1, status2, catatan;
+        private ImageView dokumentasi;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +89,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
             status1 = itemView.findViewById(R.id.status_validasi1);
             status2 = itemView.findViewById(R.id.status_validasi2);
             catatan = itemView.findViewById(R.id.catatan);
+            dokumentasi = itemView.findViewById(R.id.dokumentasi);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -143,11 +151,12 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
             intent.putExtra("ed_kompetensi_dasar", JurnalPKL.getKompetensi_dasar());
             intent.putExtra("ed_id_mapel", JurnalPKL.getId_mapel());
             intent.putExtra("ed_topik_pekerjaan", JurnalPKL.getTopik_pekerjaan());
+            intent.putExtra("ed_dokumentasi", JurnalPKL.getDokumentasi());
             context.startActivity(intent);
         }
 
         private void hapusDataJurnalPKL(final int position, @NonNull DataJurnalPKL JurnalPKL) {
-            String url = Server.URL + "hapus_jurnal_pkl_siswa.php?id_jurnal_pkl=" + JurnalPKL.getId_jurnal_pkl();
+            String url = Server.URL + "siswa_hapus_jurnal_pkl.php?id_jurnal_pkl=" + JurnalPKL.getId_jurnal_pkl();
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

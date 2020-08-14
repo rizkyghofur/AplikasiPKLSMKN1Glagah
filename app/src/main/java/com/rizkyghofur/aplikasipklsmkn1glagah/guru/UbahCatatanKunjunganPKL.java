@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -36,7 +35,6 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
     private Button btn_simpan;
     private String ed_id_guru, ed_tanggal_kunjungan, ed_catatan_pembimbing;
     private String ed_id_catatan_kunjungan_pkl;
-    Toolbar toolbar;
     TextView texttoolbar;
     ProgressDialog pDialog;
 
@@ -98,7 +96,7 @@ public class UbahCatatanKunjunganPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        String url = Server.URL + "ubahcatatankunjunganpkl_guru.php";
+        String url = Server.URL + "guru_ubah_catatan_kunjungan_pkl.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

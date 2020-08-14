@@ -29,9 +29,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPengajuanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPermohonanPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.AbsensiPKL;
-import com.rizkyghofur.aplikasipklsmkn1glagah.siswa.InfoDUDI;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +37,6 @@ import java.util.List;
 
 public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    Toolbar toolbar;
     ListView list;
     SwipeRefreshLayout swipe;
     List<DataPermohonanPKL> itemList = new ArrayList<DataPermohonanPKL>();
@@ -51,8 +47,8 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
 
     private static final String TAG = PengajuanPKLSiswa.class.getSimpleName();
 
-    private static String permohonanpkl  = Server.URL + "pengajuanpkl_siswa.php";
-    private static String permohonanpkl_filter  = Server.URL + "pengajuanpkl_siswa_filter.php";
+    private static String permohonanpkl  = Server.URL + "kakomp_pengajuanpkl_siswa.php";
+    private static String permohonanpkl_filter  = Server.URL + "kakomp_pengajuanpkl_siswa_filter.php";
     public static final String TAG_ID_PENGAJUANPKL = "id_pengajuanpkl";
     public static final String TAG_ID_SISWA = "id_siswa";
     public static final String TAG_ID_DUDI  = "nama_dudi";

@@ -39,7 +39,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterAbsensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-import com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi.CatatanKunjunganPKLKakomp;
 
 public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -56,7 +55,6 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
     private static final String TAG = AbsensiPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
-    private static String absensipkl  = Server.URL + "guru_absensi_pkl_siswa.php";
     private static String absensipklfilter  = Server.URL + "guru_absensi_pkl_siswa_filter.php";
     public static final String TAG_ID_ABSENSI  = "id_absensi";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";

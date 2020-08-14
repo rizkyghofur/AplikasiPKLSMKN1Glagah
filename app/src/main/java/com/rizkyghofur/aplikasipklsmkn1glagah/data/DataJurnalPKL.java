@@ -35,8 +35,11 @@ public class DataJurnalPKL {
     @SerializedName("catatan")
     @Expose
     private String catatan;
+    @SerializedName("dokumentasi")
+    @Expose
+    private String dokumentasi;
 
-    public DataJurnalPKL(String id_jurnal_pkl, String id_siswa, String kelas, String kompetensi_dasar, String id_mapel, String tanggal, String topik_pekerjaan, String id_dudi, String status, String catatan) {
+    public DataJurnalPKL(String id_jurnal_pkl, String id_siswa, String kelas, String kompetensi_dasar, String id_mapel, String tanggal, String topik_pekerjaan, String id_dudi, String status, String catatan, String dokumentasi) {
         this.id_jurnal_pkl = id_jurnal_pkl;
         this.id_siswa = id_siswa;
         this.kelas = kelas;
@@ -47,6 +50,7 @@ public class DataJurnalPKL {
         this.id_dudi = id_dudi;
         this.status = status;
         this.catatan = catatan;
+        this.dokumentasi = dokumentasi;
     }
 
     public DataJurnalPKL() {
@@ -130,6 +134,14 @@ public class DataJurnalPKL {
 
     public void setCatatan(String catatan){
         this.catatan = catatan;
+    }
+
+    public String getDokumentasi(){
+        return dokumentasi;
+    }
+
+    public void setDokumentasi(String dokumentasi){
+        this.dokumentasi = dokumentasi;
     }
 
 }

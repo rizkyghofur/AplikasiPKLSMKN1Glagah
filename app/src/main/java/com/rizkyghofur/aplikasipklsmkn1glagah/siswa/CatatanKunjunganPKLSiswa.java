@@ -3,21 +3,14 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -38,12 +31,8 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -59,7 +48,7 @@ public class CatatanKunjunganPKLSiswa extends AppCompatActivity implements Swipe
 
     private static final String TAG = CatatanKunjunganPKL.class.getSimpleName();
     public static final String TAG_ID_USER = "id";
-    private static String catatankunjunganpkl  = Server.URL + "catatankunjunganpkl.php";
+    private static String catatankunjunganpkl  = Server.URL + "siswa_catatan_kunjungan_pkl.php";
     public static final String TAG_ID_CATATAN_KUNJUNGAN_PKL  = "id_catatan_kunjungan_pkl";
     public static final String TAG_NAMA_GURU  = "nama_guru";
     public static final String TAG_TANGGAL_KUNJUNGAN  = "tanggal_kunjungan";

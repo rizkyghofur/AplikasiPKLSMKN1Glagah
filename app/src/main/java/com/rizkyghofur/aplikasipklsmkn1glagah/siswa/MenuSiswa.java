@@ -34,16 +34,15 @@ public class MenuSiswa extends AppCompatActivity {
     public static final String TAG_ID_USER = "id";
     public static final String TAG_USER = "nama_siswa";
     ImageView btn_logout;
-    TextView txt_username, txt_status_validasi, txt_status_keanggotaan;
+    TextView txt_username, txt_status_validasi;
     String user, id_siswa;
     public static final String session_status = "session_status";
     SharedPreferences sharedpreferences;
     String tag_json_obj = "json_obj_req";
     String success;
-    private static String url1 = Server.URL + "cek_validasipermohonanpkl.php";
-    private static String url2 = Server.URL + "cek_validasipermohonanpkl_menu.php";
+    private static String url1 = Server.URL + "siswa_cek_validasi_permohonan_pkl.php";
+    private static String url2 = Server.URL + "siswa_cek_validasi_permohonan_pkl_menu.php";
     private static final String TAG_STATUS_VALIDASI = "status_validasi";
-    private static final String TAG_STATUS_KEANGGOTAAN = "status_keanggotaan";
     private static final String TAG = MenuSiswa.class.getSimpleName();
 
     @Override
@@ -58,7 +57,6 @@ public class MenuSiswa extends AppCompatActivity {
         id_siswa = getIntent().getStringExtra(TAG_ID_USER);
         txt_username.setText(user);
         txt_status_validasi = findViewById(R.id.status_validasi);
-        txt_status_keanggotaan = findViewById(R.id.status_keanggotaan);
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,10 +351,8 @@ public class MenuSiswa extends AppCompatActivity {
                     if (success.equals("1")) {
                         Log.e("Permohonan PKL", jObj.toString());
                         txt_status_validasi.setText("Permohonan PKL : " + jObj.getString(TAG_STATUS_VALIDASI));
-                        txt_status_keanggotaan.setText("Keanggotaan PKL : " + jObj.getString(TAG_STATUS_KEANGGOTAAN));
                     } else {
-                        txt_status_validasi.setText("Status Validasi : Belum Mengajukan");
-                        txt_status_keanggotaan.setText("Status Keanggotaan : Tidak Ada");
+                        txt_status_validasi.setText("Permohonan PKL : Belum Mengajukan");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

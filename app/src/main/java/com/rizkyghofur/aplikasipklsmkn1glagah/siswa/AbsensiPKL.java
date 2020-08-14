@@ -70,8 +70,7 @@ public class AbsensiPKL extends AppCompatActivity {
     public static final String TAG_ID_SISWA = "id_siswa";
     public static final String TAG_NAMA_SISWA = "nama_siswa";
     private static final String TAG_MESSAGE = "status_pesan";
-    private static String url1 = Server.URL + "cek_absensi_pkl_siswa.php";
-    private static String url2 = Server.URL + "cek_absensi_pkl_siswa_keanggotaan.php";
+    private static String url2 = Server.URL + "siswa_cek_absensi_pkl_keanggotaan.php";
     String tag_json_obj = "json_obj_req";
     String success;
 
@@ -282,7 +281,7 @@ public class AbsensiPKL extends AppCompatActivity {
                 tanggal = txt_tanggal.getText().toString();
                 hasil = txt_hasil.getText().toString();
                 hasil1 = spinner_keterangan.getSelectedItem().toString();
-                cekAbsensiPKL();
+                simpanData(hasil, tanggal, hasil1);
                 dialog.dismiss();
             }
         });
@@ -303,7 +302,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Sedang menyimpan data ...");
         showDialog();
-        String url = Server.URL + "tambah_absensi_pkl_siswa.php?id_siswa=" + id_siswa + "&tanggal_absensi=" + tanggal + "&keterangan=" + keterangan;
+        String url = Server.URL + "siswa_tambah_absensi_pkl.php?id_siswa=" + id_siswa + "&tanggal_absensi=" + tanggal + "&keterangan=" + keterangan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -370,7 +369,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data ...");
         showDialog();
-        String url = Server.URL + "absensi_pkl_siswa.php";
+        String url = Server.URL + "siswa_absensi_pkl.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_dudi=" + id_dudi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -415,7 +414,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data ...");
         showDialog();
-        String url = Server.URL + "absensi_pkl_siswa_filter.php";
+        String url = Server.URL + "siswa_absensi_pkl_filter.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user + "&id_dudi=" + id_dudi + "&tanggal_absensi=" + input_tanggal.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -505,55 +504,4 @@ public class AbsensiPKL extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-
-    private void cekAbsensiPKL() {
-        StringRequest strReq = new StringRequest(Request.Method.GET, url1 + "?id_siswa=" + hasil + "&tanggal_absensi=" + tanggal, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e(TAG, "Login Respon: " + response.toString());
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    success = jObj.getString("status_kode");
-
-                    if (success.equals("1")) {
-                        Log.e("Absensi PKL", jObj.toString());
-                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-                    } else{
-                        simpanData(hasil, tanggal, hasil1);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Maaf, Jaringan Bermasalah", Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
-                } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
-                } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
-                } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
-                } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
-                } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
-                }
-                Log.e(TAG, "AbsensiPKL Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }) {
-        };
-        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
-    }
-    
 }

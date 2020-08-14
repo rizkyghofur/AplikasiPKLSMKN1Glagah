@@ -36,11 +36,9 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataMapel;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -280,7 +278,7 @@ public class UbahProgramPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Menyimpan data...");
         showDialog();
-        String url = Server.URL + "ubah_program_pkl_siswa.php";
+        String url = Server.URL + "siswa_ubah_program_pkl.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

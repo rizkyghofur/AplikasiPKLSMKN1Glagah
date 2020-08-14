@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.AuthFailureError;
@@ -81,7 +80,7 @@ public class CatatanKunjunganPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        String url = Server.URL + "catatankunjunganpkl_guru.php";
+        String url = Server.URL + "guru_catatan_kunjungan_pkl.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_guru="+user, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

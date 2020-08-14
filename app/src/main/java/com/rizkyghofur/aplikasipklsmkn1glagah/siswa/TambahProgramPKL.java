@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
@@ -39,11 +38,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -284,7 +281,7 @@ public class TambahProgramPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Menyimpan data...");
         showDialog();
-        String url = Server.URL + "tambah_program_pkl_siswa.php?id_siswa=" + user + "&tanggal=" + tanggal + "&id_kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
+        String url = Server.URL + "siswa_tambah_program_pkl.php?id_siswa=" + user + "&tanggal=" + tanggal + "&id_kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

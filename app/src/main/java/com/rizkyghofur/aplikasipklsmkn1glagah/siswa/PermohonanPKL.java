@@ -41,7 +41,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -166,7 +165,7 @@ public class PermohonanPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Menyimpan data...");
         showDialog();
-        String url = Server.URL + "tambah_permohonan_pkl_siswa.php?id_siswa=" + user + "&id_dudi=" + id_dudi;
+        String url = Server.URL + "siswa_tambah_permohonan_pkl.php?id_siswa=" + user + "&id_dudi=" + id_dudi;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -235,7 +234,7 @@ public class PermohonanPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        String url = Server.URL + "permohonan_pkl_siswa.php";
+        String url = Server.URL + "siswa_permohonan_pkl.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

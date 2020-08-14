@@ -34,7 +34,7 @@ public class MenuGuruPembimbing extends AppCompatActivity {
     public static final String TAG_ID_USER = "id";
     public static final String TAG_USER_GURU = "nama_guru";
     private static String session_status = "session_status";
-    private static String url = Server.URL + "cek_menu_guru_pembimbing.php";
+    private static String url = Server.URL + "guru_cek_menu_guru_pembimbing.php";
     private static final String TAG = MenuGuruPembimbing.class.getSimpleName();
     String success;
     TextView txt_username;

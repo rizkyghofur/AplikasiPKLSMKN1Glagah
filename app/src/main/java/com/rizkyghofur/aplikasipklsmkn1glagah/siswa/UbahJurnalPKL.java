@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,9 +55,9 @@ public class UbahJurnalPKL extends AppCompatActivity {
     private static String url_mapel = Server.URL + "mapel.php";
     private static String url_kompetensi_dasar = Server.URL + "kompetensi_dasar.php";
     private EditText tanggal, txt_hasil_mapel, txt_hasil_kompetensi_dasar, topik_pekerjaan;
+    private ImageView dokumentasi;
     private Button btn_simpan;
-    private String ed_id_jurnal_pkl, ed_id_siswa, ed_tanggal, ed_kompetensi_dasar, ed_topik_pekerjaan;
-    Toolbar toolbar;
+    private String ed_id_jurnal_pkl, ed_id_siswa, ed_tanggal, ed_kompetensi_dasar, ed_topik_pekerjaan, ed_dokumentasi;
     TextView texttoolbar;
     ProgressDialog pDialog;
     Spinner spinner_mapel, spinner_kompetensi_dasar;
@@ -83,6 +84,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
         txt_hasil_kompetensi_dasar = findViewById(R.id.txt_hasil_kompetensi_dasar);
         topik_pekerjaan = findViewById(R.id.topik_pekerjaan);
         btn_simpan = findViewById(R.id.simpan_tambah_ubah);
+        dokumentasi = findViewById(R.id.dokumentasi);
 
         btn_simpan.setText("Ubah");
 
@@ -93,6 +95,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
             ed_tanggal = intent.getString("ed_tanggal");
             ed_kompetensi_dasar = intent.getString("ed_kompetensi_dasar");
             ed_topik_pekerjaan = intent.getString("ed_topik_pekerjaan");
+            ed_dokumentasi = intent.getString("ed_dokumentasi");
         }
 
         tanggal.setText(ed_tanggal);
@@ -277,7 +280,7 @@ public class UbahJurnalPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Menyimpan data...");
         showDialog();
-        String url = Server.URL + "ubah_jurnal_pkl_siswa.php";
+        String url = Server.URL + "siswa_ubah_jurnal_pkl.php";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

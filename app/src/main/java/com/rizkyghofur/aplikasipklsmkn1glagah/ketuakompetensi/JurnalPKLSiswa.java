@@ -42,7 +42,6 @@ import java.util.Locale;
 
 public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    Toolbar toolbar;
     ListView list;
     SwipeRefreshLayout swipe;
     List<DataJurnalPKL> itemList = new ArrayList<DataJurnalPKL>();
@@ -57,7 +56,6 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
 
     private static final String TAG = JurnalPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
-    private static String jurnalpkl = Server.URL + "kakomp_jurnalpkl_siswa.php";
     private static String jurnalpklfilter = Server.URL + "kakomp_jurnalpkl_siswa_filter.php";
     public static final String TAG_ID_JURNAL_PKL  = "id_jurnal_pkl";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";
@@ -66,6 +64,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
     public static final String TAG_TANGGAL = "tanggal";
     public static final String TAG_TOPIK_PEKERJAAN  = "topik_pekerjaan";
     public static final String TAG_NAMA_DUDI  = "nama_dudi";
+    public static final String TAG_DOKUMENTASI = "dokumentasi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +164,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
                         item.setKelas(obj.getString(TAG_KELAS));
                         item.setTopik_pekerjaan(obj.getString(TAG_TOPIK_PEKERJAAN));
                         item.setId_dudi(obj.getString(TAG_NAMA_DUDI));
+                        item.setDokumentasi(obj.getString(TAG_DOKUMENTASI));
 
                         itemList.add(item);
                     } catch (JSONException e) {
@@ -228,6 +228,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
                         item.setTanggal(obj.getString(TAG_TANGGAL));
                         item.setTopik_pekerjaan(obj.getString(TAG_TOPIK_PEKERJAAN));
                         item.setId_dudi(obj.getString(TAG_NAMA_DUDI));
+                        item.setDokumentasi(obj.getString(TAG_DOKUMENTASI));
 
                         itemList.add(item);
                     } catch (JSONException e) {

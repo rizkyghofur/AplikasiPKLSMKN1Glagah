@@ -55,7 +55,6 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
     private static final String TAG = AbsensiPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
-    private static String absensipkl  = Server.URL + "kakomp_absensi_pkl_siswa.php";
     private static String absensipklfilter  = Server.URL + "kakomp_absensi_pkl_siswa_filter.php";
     public static final String TAG_ID_ABSENSI  = "id_absensi";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";

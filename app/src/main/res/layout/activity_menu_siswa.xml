@@ -54,7 +54,7 @@
         android:id="@+id/user_name"
         android:textColor="#ffffff"
         android:fontFamily="@font/mo_re"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,19 +84,6 @@
         android:textColor="#970A00"
         android:textStyle="bold"
         android:layout_marginTop="65dp"
-        android:layout_marginStart="18dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/user_photo"
-        app:layout_constraintTop_toTopOf="@id/user_name"/>
-
-    <TextView
-        android:textSize="12sp"
-        android:text="Status Keanggotaan"
-        android:id="@+id/status_keanggotaan"
-        android:textColor="#970A00"
-        android:fontFamily="@font/mo_re"
-        android:layout_marginTop="95dp"
         android:layout_marginStart="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

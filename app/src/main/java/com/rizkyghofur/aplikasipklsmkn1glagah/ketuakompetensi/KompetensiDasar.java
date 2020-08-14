@@ -2,7 +2,6 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;

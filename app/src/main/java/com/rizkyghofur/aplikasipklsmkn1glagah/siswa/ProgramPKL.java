@@ -122,7 +122,7 @@ public class ProgramPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        String url = Server.URL + "program_pkl_siswa.php";
+        String url = Server.URL + "siswa_program_pkl.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_siswa="+user, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -168,7 +168,7 @@ public class ProgramPKL extends AppCompatActivity {
         pDialog.setMessage("Memuat data...");
         showDialog();
         adapter.notifyDataSetChanged();
-        String url = Server.URL + "program_pkl_siswa_filter.php";
+        String url = Server.URL + "siswa_program_pkl_filter.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_siswa="+user+"&tanggal="+tanggal.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
