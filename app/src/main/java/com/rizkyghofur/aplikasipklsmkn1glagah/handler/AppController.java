@@ -29,7 +29,6 @@ public class AppController extends Application {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-
         return mRequestQueue;
     }
 
@@ -43,23 +42,15 @@ public class AppController extends Application {
         getRequestQueue().add(req);
     }
 
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
-
     public <T> void addToQueue(@NonNull Request<T> request, String tag) {
         if (tag.equals("")) {
             request.setTag(TAG);
         } else {
             request.setTag(tag);
         }
-
         request.setRetryPolicy(new DefaultRetryPolicy(15000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
         getRequestQueueeue().add(request);
     }
 
@@ -67,7 +58,6 @@ public class AppController extends Application {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-
         return requestQueue;
     }
 }

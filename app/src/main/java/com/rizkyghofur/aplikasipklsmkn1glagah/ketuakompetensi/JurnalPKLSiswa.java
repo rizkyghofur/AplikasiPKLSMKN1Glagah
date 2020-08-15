@@ -225,6 +225,7 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
                         item.setId_jurnal_pkl(obj.getString(TAG_ID_JURNAL_PKL));
                         item.setId_siswa(obj.getString(TAG_NAMA_SISWA));
                         item.setKompetensi_dasar(obj.getString(TAG_KOMPETENSI_DASAR));
+                        item.setKelas(obj.getString(TAG_KELAS));
                         item.setTanggal(obj.getString(TAG_TANGGAL));
                         item.setTopik_pekerjaan(obj.getString(TAG_TOPIK_PEKERJAAN));
                         item.setId_dudi(obj.getString(TAG_NAMA_DUDI));

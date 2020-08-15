@@ -128,7 +128,6 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
                                         "\n\n Status Validasi : \n" + JurnalPKL.getStatus() +
                                                     "\n\n Catatan : \n" + JurnalPKL.getCatatan();
 
-
             new AlertDialog.Builder(context)
                     .setTitle("Detail JurnalPKL")
                     .setMessage(deskripsi)

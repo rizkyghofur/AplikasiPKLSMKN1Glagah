@@ -1,16 +1,25 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.siswa;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.android.volley.VolleyLog;
@@ -24,8 +33,8 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
@@ -41,19 +50,31 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-public class TambahJurnalPKL extends AppCompatActivity {
+public class TambahJurnalPKL extends AppCompatActivity implements View.OnClickListener {
 
-    Toolbar toolbar;
     private EditText tanggal, txt_hasil_mapel, txt_hasil_kompetensi_dasar, topik_pekerjaan;
     private Button btn_simpan, btn_tanggal;
     String user;
     SharedPreferences sharedpreferences;
+    ImageView ivPhoto;
+    Bitmap bitmap, decoded;
+    int bitmap_size = 60;
+    Intent intent;
+    Uri fileUri;
+    public final int REQUEST_CAMERA = 0;
+    public final int SELECT_FILE = 1;
+    int max_resolution_image = 1024;
     public static final String TAG_ID_USER = "id";
     public static final String TAG_ID_MAPEL = "id";
     public static final String TAG_MAPEL = "nama_mapel";
@@ -84,6 +105,8 @@ public class TambahJurnalPKL extends AppCompatActivity {
         txt_hasil_mapel = findViewById(R.id.txt_hasil_mapel);
         txt_hasil_kompetensi_dasar = findViewById(R.id.txt_hasil_kompetensi_dasar);
         topik_pekerjaan = findViewById(R.id.topik_pekerjaan);
+        ivPhoto = findViewById(R.id.iv_photo);
+        ivPhoto.setOnClickListener(this);
         btn_simpan = findViewById(R.id.simpan_tambah_ubah);
         btn_tanggal = findViewById(R.id.btn_tanggal);
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -133,6 +156,7 @@ public class TambahJurnalPKL extends AppCompatActivity {
                 String tanggalx = tanggal.getText().toString();
                 String kompetensi_dasarx = txt_hasil_kompetensi_dasar.getText().toString();
                 String topik_pekerjaanx = topik_pekerjaan.getText().toString();
+                String dokumentasix = getStringImage(decoded);
 
                 if (tanggalx.isEmpty()) {
                     Toast.makeText(TambahJurnalPKL.this, "Tanggal Program PKL masih kosong!", Toast.LENGTH_SHORT).show();
@@ -142,10 +166,81 @@ public class TambahJurnalPKL extends AppCompatActivity {
                     Toast.makeText(TambahJurnalPKL.this, "Topik Pekerjaan masih kosong!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    simpanData(tanggalx, kompetensi_dasarx, topik_pekerjaanx);
+                    simpanData(tanggalx, kompetensi_dasarx, topik_pekerjaanx, dokumentasix);
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+
+            case R.id.iv_photo:
+                pickImage();
+                break;
+        }
+    }
+
+    private void pickImage() {
+
+        ivPhoto.setImageResource(0);
+        final CharSequence[] items = {"Kamera", "Galeri",
+                "Batal"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(TambahJurnalPKL.this);
+        builder.setTitle("Tambahkan Foto / Dokumentasi");
+        builder.setIcon(R.mipmap.login);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Kamera")) {
+                    intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Galeri")) {
+                    intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), SELECT_FILE);
+                } else if (items[item].equals("Batal")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.e("onActivityResult", "requestCode " + requestCode + ", resultCode " + resultCode);
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_CAMERA) {
+                try {
+                    bitmap = (Bitmap) data.getExtras().get("data");
+                    setToImageView(getResizedBitmap(bitmap, max_resolution_image));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == SELECT_FILE && data != null && data.getData() != null) {
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(TambahJurnalPKL.this.getContentResolver(), data.getData());
+                    setToImageView(getResizedBitmap(bitmap, max_resolution_image));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+        return encodedImage;
     }
     
     private void callData() {
@@ -285,13 +380,35 @@ public class TambahJurnalPKL extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void simpanData(String tanggal, String kompetensi_dasar, String topik_pekerjaan) {
+    private void setToImageView(Bitmap bmp) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
+        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
+        ivPhoto.setImageBitmap(decoded);
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+    private void simpanData(final String tanggal, final String kompetensi_dasar, final String topik_pekerjaan, final String dokumentasi) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Menyimpan data...");
         showDialog();
-        String url = Server.URL + "siswa_tambah_jurnal_pkl.php?id_siswa=" + user + "&tanggal=" + tanggal + "&id_kompetensi_dasar=" + kompetensi_dasar + "&topik_pekerjaan=" + topik_pekerjaan;
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        String url = Server.URL + "siswa_tambah_jurnal_pkl.php";
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 ResponStatus responStatus = new Gson().fromJson(response, ResponStatus.class);
@@ -344,7 +461,19 @@ public class TambahJurnalPKL extends AppCompatActivity {
                 }
                 hideDialog();
             }
-        });
-        AppController.getInstance().addToQueue(request, "tambah_jurnal_pkl");
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> map = new HashMap<>();
+                map.put("id_siswa", user);
+                map.put("tanggal", tanggal);
+                map.put("id_kompetensi_dasar", kompetensi_dasar);
+                map.put("topik_pekerjaan", topik_pekerjaan);
+                map.put("dokumentasi", dokumentasi);
+                Log.e(TAG, "" + map);
+                return map;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(request, "tambah_jurnal_pkl");
     }
 }
