@@ -369,7 +369,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data ...");
         showDialog();
-        String url = Server.URL + "siswa_absensi_pkl.php";
+        String url = Server.URL + "siswa_absensi_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_dudi=" + id_dudi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

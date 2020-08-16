@@ -116,7 +116,7 @@ public class TambahProgramPKL extends AppCompatActivity {
                 } else if (kompetensi_dasarx.isEmpty()) {
                     Toast.makeText(TambahProgramPKL.this, "Rujukan Kompetensi Dasar masih kosong!", Toast.LENGTH_SHORT).show();
                 } else if (topik_pekerjaanx.isEmpty()) {
-                    Toast.makeText(TambahProgramPKL.this, "Topik Pekerjaan Dasar masih kosong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahProgramPKL.this, "Topik Pekerjaan masih kosong!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     simpanData(tanggalx, kompetensi_dasarx, topik_pekerjaanx);
@@ -146,7 +146,6 @@ public class TambahProgramPKL extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        
     }
 
     private void callData1() {

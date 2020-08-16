@@ -157,9 +157,12 @@ public class TambahJurnalPKL extends AppCompatActivity implements View.OnClickLi
                 String kompetensi_dasarx = txt_hasil_kompetensi_dasar.getText().toString();
                 String topik_pekerjaanx = topik_pekerjaan.getText().toString();
                 String dokumentasix = getStringImage(decoded);
+                if(dokumentasix == null){
+                    dokumentasix = "default.jpg";
+                }
 
                 if (tanggalx.isEmpty()) {
-                    Toast.makeText(TambahJurnalPKL.this, "Tanggal Program PKL masih kosong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahJurnalPKL.this, "Tanggal Jurnal PKL masih kosong!", Toast.LENGTH_SHORT).show();
                 } else if (kompetensi_dasarx.isEmpty()) {
                     Toast.makeText(TambahJurnalPKL.this, "Rujukan Kompetensi Dasar masih kosong!", Toast.LENGTH_SHORT).show();
                 } else if (topik_pekerjaanx.isEmpty()) {
@@ -183,12 +186,10 @@ public class TambahJurnalPKL extends AppCompatActivity implements View.OnClickLi
     }
 
     private void pickImage() {
-
-        ivPhoto.setImageResource(0);
         final CharSequence[] items = {"Kamera", "Galeri",
                 "Batal"};
         AlertDialog.Builder builder = new AlertDialog.Builder(TambahJurnalPKL.this);
-        builder.setTitle("Tambahkan Foto / Dokumentasi");
+        builder.setTitle("Tambahkan Dokumentasi");
         builder.setIcon(R.mipmap.login);
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
@@ -237,10 +238,14 @@ public class TambahJurnalPKL extends AppCompatActivity implements View.OnClickLi
 
     public String getStringImage(Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
-        return encodedImage;
+        if(bmp != null) {
+            bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
+            byte[] imageBytes = baos.toByteArray();
+            String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        } else {
+            return null;
+        }
     }
     
     private void callData() {
