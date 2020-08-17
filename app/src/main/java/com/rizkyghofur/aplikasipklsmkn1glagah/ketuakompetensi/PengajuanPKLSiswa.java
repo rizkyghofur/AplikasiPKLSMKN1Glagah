@@ -46,7 +46,6 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
     ProgressDialog pDialog;
 
     private static final String TAG = PengajuanPKLSiswa.class.getSimpleName();
-
     private static String permohonanpkl  = Server.URL + "kakomp_pengajuanpkl_siswa.php";
     private static String permohonanpkl_filter  = Server.URL + "kakomp_pengajuanpkl_siswa_filter.php";
     public static final String TAG_ID_PENGAJUANPKL = "id_pengajuanpkl";

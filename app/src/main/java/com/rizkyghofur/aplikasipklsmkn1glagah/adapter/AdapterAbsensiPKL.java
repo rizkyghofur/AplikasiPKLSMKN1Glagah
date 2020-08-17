@@ -66,5 +66,4 @@ public class AdapterAbsensiPKL extends BaseAdapter {
 
         return convertView;
     }
-
 }

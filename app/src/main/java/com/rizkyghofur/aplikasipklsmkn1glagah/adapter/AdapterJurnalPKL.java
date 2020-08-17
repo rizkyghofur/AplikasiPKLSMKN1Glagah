@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataJurnalPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
-
 import java.util.List;
 
 public class AdapterJurnalPKL extends BaseAdapter {

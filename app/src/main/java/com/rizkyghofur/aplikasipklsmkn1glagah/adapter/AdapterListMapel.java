@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataMapel;
-
 import java.util.List;
 
 public class AdapterListMapel extends BaseAdapter {

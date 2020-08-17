@@ -70,7 +70,6 @@ public class AdapterPengajuanPKL extends BaseAdapter {
         tanggal_keluar.setText("Tanggal Keluar : " + data.getTanggal_keluar());
         id_guru.setText("Guru : " + data.getId_guru());
         status_validasi.setText("Status Validasi : " + data.getStatus_validasi());
-
         return convertView;
     }
 }

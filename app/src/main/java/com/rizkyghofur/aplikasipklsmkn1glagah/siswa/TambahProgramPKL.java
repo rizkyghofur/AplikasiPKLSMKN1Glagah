@@ -49,7 +49,6 @@ import java.util.Locale;
 
 public class TambahProgramPKL extends AppCompatActivity {
 
-    Toolbar toolbar;
     private EditText tanggal, txt_hasil_mapel, txt_hasil_kompetensi_dasar, topik_pekerjaan;
     private Button btn_simpan, btn_tanggal;
     String user;

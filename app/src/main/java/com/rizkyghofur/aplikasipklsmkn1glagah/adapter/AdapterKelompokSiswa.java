@@ -54,8 +54,6 @@ public class AdapterKelompokSiswa extends BaseAdapter {
         }
 
         nama_siswa.setText(data.getNama());
-
         return convertView;
-
     }
 }

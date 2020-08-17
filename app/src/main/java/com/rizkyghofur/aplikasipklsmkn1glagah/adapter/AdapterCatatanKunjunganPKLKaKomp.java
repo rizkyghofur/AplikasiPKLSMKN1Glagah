@@ -61,5 +61,4 @@ public class AdapterCatatanKunjunganPKLKaKomp extends BaseAdapter {
         nama_dudi.setText("DUDI : "+ data.getNama_dudi());
         return convertView;
     }
-
 }

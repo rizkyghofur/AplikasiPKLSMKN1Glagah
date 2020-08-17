@@ -59,5 +59,4 @@ public class AdapterCatatanKunjunganPKLSiswa extends BaseAdapter {
         catatan_pembimbing.setText("Catatan : "+ data.getCatatan_pembimbing());
         return convertView;
     }
-
 }

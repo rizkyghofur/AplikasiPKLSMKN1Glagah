@@ -42,7 +42,6 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 
 public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    Toolbar toolbar;
     ListView list;
     SwipeRefreshLayout swipe;
     List<DataAbsensiPKL> itemList = new ArrayList<DataAbsensiPKL>();

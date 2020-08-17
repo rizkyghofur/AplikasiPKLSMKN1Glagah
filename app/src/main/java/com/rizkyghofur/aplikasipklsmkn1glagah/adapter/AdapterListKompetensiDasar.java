@@ -54,8 +54,6 @@ public class AdapterListKompetensiDasar extends BaseAdapter {
         }
 
         kompetensi_dasar.setText(data.getKompetensi_dasar());
-
         return convertView;
-
     }
 }

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +36,6 @@ import java.util.List;
 
 public class InfoDUDI extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    Toolbar toolbar;
     ListView list;
     SwipeRefreshLayout swipe;
     List<DataDUDI> itemList = new ArrayList<DataDUDI>();

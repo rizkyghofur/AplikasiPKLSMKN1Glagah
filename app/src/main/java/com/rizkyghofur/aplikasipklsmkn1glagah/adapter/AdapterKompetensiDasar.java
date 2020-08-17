@@ -58,8 +58,6 @@ public class AdapterKompetensiDasar extends BaseAdapter {
         id_kompetensi_dasar.setText(data.getId());
         kode_kompetensi_dasar.setText(data.getKode());
         kompetensi_dasar.setText(data.getKompetensi_dasar());
-
         return convertView;
-
     }
 }

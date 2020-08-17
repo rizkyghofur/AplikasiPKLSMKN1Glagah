@@ -54,8 +54,6 @@ public class AdapterListDUDI extends BaseAdapter {
         }
 
         dudi.setText(data.getNama_dudi());
-
         return convertView;
-
     }
 }
