@@ -73,7 +73,7 @@ public class AdapterJurnalPKL extends BaseAdapter {
         nama_dudi.setText("DUDI : "+ data.getId_dudi());
         Glide.with(convertView)
                 .load(Server.URLDoc + data.getDokumentasi())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.add_image)
                 .into(dokumentasi);
         return convertView;
     }
