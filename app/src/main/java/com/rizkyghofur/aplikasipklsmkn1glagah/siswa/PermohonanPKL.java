@@ -61,7 +61,7 @@ public class PermohonanPKL extends AppCompatActivity {
     public static PermohonanPKL mInstance;
     private static final String TAG = PermohonanPKL.class.getSimpleName();
     private static String url = Server.URL + "listdudi.php";
-    private static String url1 = Server.URL + "cek_pengajuanpkl.php";
+    private static String url1 = Server.URL + "siswa_cek_permohonan_pkl.php";
     public static final String TAG_ID_DUDI = "id_dudi";
     public static final String TAG_NAMA_DUDI = "nama_dudi";
     private static final String TAG_MESSAGE = "status_pesan";
