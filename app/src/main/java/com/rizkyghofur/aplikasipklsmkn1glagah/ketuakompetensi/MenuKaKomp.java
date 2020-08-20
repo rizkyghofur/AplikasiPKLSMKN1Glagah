@@ -107,7 +107,7 @@ public class MenuKaKomp extends AppCompatActivity {
     }
 
     public void AbsensiPKL_Siswa (View view){
-        Intent intent = new Intent(MenuKaKomp.this, AbsensiPKLSiswa.class);
+        Intent intent = new Intent(MenuKaKomp.this, PresensiPKLSiswa.class);
         startActivity(intent);
     }
 

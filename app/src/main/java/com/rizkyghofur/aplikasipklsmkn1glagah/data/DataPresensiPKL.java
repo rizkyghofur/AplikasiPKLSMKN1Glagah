@@ -1,12 +1,12 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.data;
 
-public class DataAbsensiPKL {
+public class DataPresensiPKL {
     private String id_absensi, id_dudi, nama_siswa, kelas, tanggal_absensi, keterangan, nama_dudi;
 
-    public DataAbsensiPKL() {
+    public DataPresensiPKL() {
     }
 
-    public DataAbsensiPKL(String id_absensi, String id_dudi, String nama_siswa, String kelas, String tanggal_absensi, String keterangan, String nama_dudi) {
+    public DataPresensiPKL(String id_absensi, String id_dudi, String nama_siswa, String kelas, String tanggal_absensi, String keterangan, String nama_dudi) {
         this.id_absensi = id_absensi;
         this.id_dudi = id_dudi;
         this.nama_siswa = nama_siswa;

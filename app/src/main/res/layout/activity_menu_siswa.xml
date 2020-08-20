@@ -306,7 +306,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Absensi PKL"
+                    android:text="Presensi PKL"
                     android:textColor="@color/textcardColor"
                     android:textSize="12sp"
                     android:layout_marginTop="8dp"

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".siswa.AbsensiPKL"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ketuakompetensi.PresensiPKLSiswa"
     android:background="@mipmap/back">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme"
-        tools:ignore="MissingConstraints">
+        android:theme="@style/AppTheme">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -24,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:id="@+id/texttoolbar"
                 android:layout_height="wrap_content"
-                android:text="Absensi PKL"
+                android:text="Presensi PKL Siswa"
                 android:textColor="@color/white"
                 app:popupTheme="@style/AppTheme"
                 style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
@@ -32,11 +31,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:textSize="20sp"
         android:background="@drawable/shapeemail"
         android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
         android:layout_marginLeft="10dp"
@@ -45,10 +43,11 @@
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
-        android:id="@+id/input_tanggal"
-        android:hint=" Tanggal Absensi PKL"
+        android:id="@+id/input_tanggal_absensi"
+        android:hint=" Pilih Tanggal Presensi PKL"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:editable="false"/>
 
     <Button
         android:layout_marginTop="75dp"
@@ -60,25 +59,19 @@
         android:clickable="true"
         android:layout_marginLeft="315dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_marginTop="130dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_tambah_absensi"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_add_white_24dp"
-        app:backgroundTint="@color/colorPrimaryDark"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="130dp">
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/list_divider"
+            android:dividerHeight="2dp"
+            android:listSelector="@drawable/list_row_selector">
+        </ListView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

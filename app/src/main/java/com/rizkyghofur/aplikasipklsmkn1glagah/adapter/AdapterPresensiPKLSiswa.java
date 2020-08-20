@@ -22,7 +22,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
-import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPresensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
@@ -30,12 +30,12 @@ import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 
 import java.util.ArrayList;
 
-public class AdapterAbsensiPKLSiswa extends RecyclerView.Adapter<AdapterAbsensiPKLSiswa.ViewHolder> {
+public class AdapterPresensiPKLSiswa extends RecyclerView.Adapter<AdapterPresensiPKLSiswa.ViewHolder> {
 
     private Context context;
-    private ArrayList<DataAbsensiPKL> arrayAbsensiPKLSiswa;
+    private ArrayList<DataPresensiPKL> arrayAbsensiPKLSiswa;
 
-    public AdapterAbsensiPKLSiswa(Context context, ArrayList<DataAbsensiPKL> arrayAbsensiPKLSiswa) {
+    public AdapterPresensiPKLSiswa(Context context, ArrayList<DataPresensiPKL> arrayAbsensiPKLSiswa) {
         this.context = context;
         this.arrayAbsensiPKLSiswa = arrayAbsensiPKLSiswa;
     }
@@ -43,14 +43,14 @@ public class AdapterAbsensiPKLSiswa extends RecyclerView.Adapter<AdapterAbsensiP
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_siswa_absensi_pkl_list, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_siswa_presensi_pkl_list, parent, false);
         return new ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DataAbsensiPKL AbsensiPKLSiswa = arrayAbsensiPKLSiswa.get(position);
+        DataPresensiPKL AbsensiPKLSiswa = arrayAbsensiPKLSiswa.get(position);
 
         holder.id_absensi_pkl.setText(AbsensiPKLSiswa.getId_absensi());
         holder.id_siswa.setText("Nama Siswa : "+ AbsensiPKLSiswa.getId_siswa());
@@ -78,7 +78,7 @@ public class AdapterAbsensiPKLSiswa extends RecyclerView.Adapter<AdapterAbsensiP
                 @Override
                 public boolean onLongClick(View v) {
                     final int position = getAdapterPosition();
-                    final DataAbsensiPKL AbsensiPKLSiswa = arrayAbsensiPKLSiswa.get(position);
+                    final DataPresensiPKL AbsensiPKLSiswa = arrayAbsensiPKLSiswa.get(position);
 
                     String[] pilihan = {"Lihat", "Hapus"};
                     new AlertDialog.Builder(context)
@@ -101,7 +101,7 @@ public class AdapterAbsensiPKLSiswa extends RecyclerView.Adapter<AdapterAbsensiP
             });
         }
 
-        private void lihatDataAbsensiPKLSiswa(@NonNull DataAbsensiPKL AbsensiPKLSiswa) {
+        private void lihatDataAbsensiPKLSiswa(@NonNull DataPresensiPKL AbsensiPKLSiswa) {
             String deskripsi =
                     "\n Nama Siswa : \n" + AbsensiPKLSiswa.getId_siswa() +
                             "\n\n Tanggal Absensi : " + AbsensiPKLSiswa.getTanggal_absensi() +
@@ -122,7 +122,7 @@ public class AdapterAbsensiPKLSiswa extends RecyclerView.Adapter<AdapterAbsensiP
         }
     }
 
-    private void hapusDataAbsensiPKLSiswa(final int position, @NonNull DataAbsensiPKL absensiPKLSiswa) {
+    private void hapusDataAbsensiPKLSiswa(final int position, @NonNull DataPresensiPKL absensiPKLSiswa) {
         String url = Server.URL + "hapus_absensi_pkl_siswa.php?id_absensi=" + absensiPKLSiswa.getId_absensi();
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

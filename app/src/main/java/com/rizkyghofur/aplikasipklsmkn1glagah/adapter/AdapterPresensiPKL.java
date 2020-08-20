@@ -2,7 +2,7 @@ package com.rizkyghofur.aplikasipklsmkn1glagah.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPresensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.List;
 
-public class AdapterAbsensiPKL extends BaseAdapter {
+public class AdapterPresensiPKL extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<DataAbsensiPKL> items;
+    private List<DataPresensiPKL> items;
 
-    public AdapterAbsensiPKL(Activity activity, List<DataAbsensiPKL> items) {
+    public AdapterPresensiPKL(Activity activity, List<DataPresensiPKL> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -44,9 +44,9 @@ public class AdapterAbsensiPKL extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.activity_guru_absensi_pkl_list, null);
+            convertView = inflater.inflate(R.layout.activity_guru_presensi_pkl_list, null);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.activity_kakomp_absensi_pkl_siswa_list, null);
+            convertView = inflater.inflate(R.layout.activity_kakomp_presensi_pkl_siswa_list, null);
 
         TextView id_absensi = convertView.findViewById(R.id.id_absensi);
         TextView nama_siswa = convertView.findViewById(R.id.nama_siswa);
@@ -55,12 +55,12 @@ public class AdapterAbsensiPKL extends BaseAdapter {
         TextView keterangan = convertView.findViewById(R.id.keterangan);
         TextView nama_dudi = convertView.findViewById(R.id.nama_dudi);
 
-        DataAbsensiPKL data = items.get(position);
+        DataPresensiPKL data = items.get(position);
 
         id_absensi.setText(data.getId_absensi());
         nama_siswa.setText("Nama Siswa : "+data.getId_siswa());
         kelas.setText("Kelas : " + data.getKelas());
-        tanggal_absensi.setText("Tanggal Absensi : "+ data.getTanggal_absensi());
+        tanggal_absensi.setText("Tanggal Presensi : "+ data.getTanggal_absensi());
         keterangan.setText("Keterangan : "+ data.getKeterangan());
         nama_dudi.setText("DUDI : " + data.getNama_dudi());
 

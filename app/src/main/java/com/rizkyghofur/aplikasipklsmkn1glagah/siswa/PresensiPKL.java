@@ -36,10 +36,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
-import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterAbsensiPKLSiswa;
+import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPresensiPKLSiswa;
 import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterKelompokSiswa;
 import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataKelompokSiswa;
-import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPresensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.ResponStatus;
@@ -54,7 +54,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class AbsensiPKL extends AppCompatActivity {
+public class PresensiPKL extends AppCompatActivity {
 
     private FloatingActionButton fab_tambah;
     String user, hasil, hasil1, tanggal, id_dudi;
@@ -62,15 +62,15 @@ public class AbsensiPKL extends AppCompatActivity {
     public static final String TAG_USER = "id";
     public final static String TAG_ID_DUDI = "id_dudi";
     private RecyclerView recyclerView;
-    private AdapterAbsensiPKLSiswa adapter;
-    private ArrayList<DataAbsensiPKL> arrayAbsensiPKL;
-    public static AbsensiPKL mInstance;
-    private static final String TAG = AbsensiPKL.class.getSimpleName();
+    private AdapterPresensiPKLSiswa adapter;
+    private ArrayList<DataPresensiPKL> arrayAbsensiPKL;
+    public static PresensiPKL mInstance;
+    private static final String TAG = PresensiPKL.class.getSimpleName();
     private static String url = Server.URL + "listkelompoksiswa.php";
     public static final String TAG_ID_SISWA = "id_siswa";
     public static final String TAG_NAMA_SISWA = "nama_siswa";
     private static final String TAG_MESSAGE = "status_pesan";
-    private static String url2 = Server.URL + "siswa_cek_absensi_pkl_keanggotaan.php";
+    private static String url2 = Server.URL + "siswa_cek_presensi_pkl_keanggotaan.php";
     String tag_json_obj = "json_obj_req";
     String success;
 
@@ -90,7 +90,7 @@ public class AbsensiPKL extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_siswa_absensi_pkl);
+        setContentView(R.layout.activity_siswa_presensi_pkl);
 
         fab_tambah = findViewById(R.id.fab_tambah_absensi);
         input_tanggal = findViewById(R.id.input_tanggal);
@@ -180,21 +180,21 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
-                Log.e(TAG, "AbsensiPKL Error: " + error.getMessage());
+                Log.e(TAG, "PresensiPKL Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -204,9 +204,9 @@ public class AbsensiPKL extends AppCompatActivity {
     }
 
     private void DialogForm(final String tanggalx, String siswax, String button) {
-        dialog = new AlertDialog.Builder(AbsensiPKL.this);
+        dialog = new AlertDialog.Builder(PresensiPKL.this);
         inflater = getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.activity_siswa_absensi_pkl_tambah, null);
+        dialogView = inflater.inflate(R.layout.activity_siswa_presensi_pkl_tambah, null);
         dialog.setView(dialogView);
         dialog.setCancelable(true);
         dialog.setIcon(R.mipmap.login);
@@ -261,7 +261,7 @@ public class AbsensiPKL extends AppCompatActivity {
             }
         });
 
-        adapter1 = new AdapterKelompokSiswa(AbsensiPKL.this, listsiswa);
+        adapter1 = new AdapterKelompokSiswa(PresensiPKL.this, listsiswa);
         spinner_siswa.setAdapter(adapter1);
         callData();
 
@@ -302,7 +302,7 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Sedang menyimpan data ...");
         showDialog();
-        String url = Server.URL + "siswa_tambah_absensi_pkl.php?id_siswa=" + id_siswa + "&tanggal_absensi=" + tanggal + "&keterangan=" + keterangan;
+        String url = Server.URL + "siswa_tambah_presensi_pkl.php?id_siswa=" + id_siswa + "&tanggal_absensi=" + tanggal + "&keterangan=" + keterangan;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -310,28 +310,28 @@ public class AbsensiPKL extends AppCompatActivity {
                 int status_kode = responStatus.getStatus_kode();
                 String status_pesan = responStatus.getStatus_pesan();
                 if (status_kode == 1) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_LONG).show();
-                    AbsensiPKL.mInstance.MuatData();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_LONG).show();
+                    PresensiPKL.mInstance.MuatData();
                 } else if (status_kode == 2) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 3) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 4) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 5) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 6) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 7) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 8) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 9) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else if (status_kode == 10) {
-                    Toast.makeText(AbsensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, status_pesan, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Status Kesalahan Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 hideDialog();
             }
@@ -339,19 +339,19 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 hideDialog();
             }
@@ -369,18 +369,18 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data ...");
         showDialog();
-        String url = Server.URL + "siswa_absensi_pkl_siswa.php";
+        String url = Server.URL + "siswa_presensi_pkl_siswa.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_dudi=" + id_dudi, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    Type typeAbsensiPKL = new TypeToken<ArrayList<DataAbsensiPKL>>() {
+                    Type typeAbsensiPKL = new TypeToken<ArrayList<DataPresensiPKL>>() {
                     }.getType();
                     arrayAbsensiPKL = new Gson().fromJson(response, typeAbsensiPKL);
-                    adapter = new AdapterAbsensiPKLSiswa(AbsensiPKL.this, arrayAbsensiPKL);
+                    adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
                     recyclerView.setAdapter(adapter);
                 } catch (Exception e) {
-                    Toast.makeText(AbsensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 hideDialog();
@@ -389,19 +389,19 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 hideDialog();
             }
@@ -414,18 +414,18 @@ public class AbsensiPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data ...");
         showDialog();
-        String url = Server.URL + "siswa_absensi_pkl_filter.php";
+        String url = Server.URL + "siswa_presensi_pkl_filter.php";
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user + "&id_dudi=" + id_dudi + "&tanggal_absensi=" + input_tanggal.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    Type typeAbsensiPKL = new TypeToken<ArrayList<DataAbsensiPKL>>() {
+                    Type typeAbsensiPKL = new TypeToken<ArrayList<DataPresensiPKL>>() {
                     }.getType();
                     arrayAbsensiPKL = new Gson().fromJson(response, typeAbsensiPKL);
-                    adapter = new AdapterAbsensiPKLSiswa(AbsensiPKL.this, arrayAbsensiPKL);
+                    adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
                     recyclerView.setAdapter(adapter);
                 } catch (Exception e) {
-                    Toast.makeText(AbsensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 hideDialog();
@@ -434,19 +434,19 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKL.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 hideDialog();
             }
@@ -456,7 +456,7 @@ public class AbsensiPKL extends AppCompatActivity {
 
     private void callData() {
         listsiswa.clear();
-        pDialog = new ProgressDialog(AbsensiPKL.this);
+        pDialog = new ProgressDialog(PresensiPKL.this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
@@ -488,7 +488,7 @@ public class AbsensiPKL extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(AbsensiPKL.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(PresensiPKL.this, error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

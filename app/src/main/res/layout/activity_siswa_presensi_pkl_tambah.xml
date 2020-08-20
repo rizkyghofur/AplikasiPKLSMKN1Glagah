@@ -15,7 +15,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/shapeemail_black"
             android:drawablePadding="10dp"
-            android:hint="Tanggal Absen : Format TTTT/BB/HH"
+            android:hint="Tanggal Presensi : Format TTTT/BB/HH"
             android:textSize="13sp"
             android:padding="15dp"
             android:editable="false"

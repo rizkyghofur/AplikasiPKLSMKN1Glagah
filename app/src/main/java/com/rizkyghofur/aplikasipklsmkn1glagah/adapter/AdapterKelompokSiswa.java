@@ -44,7 +44,7 @@ public class AdapterKelompokSiswa extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.activity_siswa_absensi_pkl_list_siswa, null);
+            convertView = inflater.inflate(R.layout.activity_siswa_presensi_pkl_list_siswa, null);
 
         TextView nama_siswa = convertView.findViewById(R.id.nama_siswa);
 

@@ -158,7 +158,7 @@ public class MenuGuruPembimbing extends AppCompatActivity {
 
                     if (success.equals("1")) {
                         Log.e("MenuGuruPembimbing", jObj.toString());
-                        Intent intent = new Intent(MenuGuruPembimbing.this, AbsensiPKLSiswa.class);
+                        Intent intent = new Intent(MenuGuruPembimbing.this, PresensiPKLSiswa.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Maaf, Anda belum diizinkan mengakses menu ini karena belum ada siswa yang melakukan atau dalam proses pengajuan PKL", Toast.LENGTH_LONG).show();

@@ -1,7 +1,6 @@
-package com.rizkyghofur.aplikasipklsmkn1glagah.ketuakompetensi;
+package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,26 +34,26 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.rizkyghofur.aplikasipklsmkn1glagah.Login;
 import com.rizkyghofur.aplikasipklsmkn1glagah.R;
-import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterAbsensiPKL;
-import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataAbsensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.adapter.AdapterPresensiPKL;
+import com.rizkyghofur.aplikasipklsmkn1glagah.data.DataPresensiPKL;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.AppController;
 import com.rizkyghofur.aplikasipklsmkn1glagah.handler.Server;
 
-public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class PresensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     ListView list;
     SwipeRefreshLayout swipe;
-    List<DataAbsensiPKL> itemList = new ArrayList<DataAbsensiPKL>();
-    AdapterAbsensiPKL adapter;
+    List<DataPresensiPKL> itemList = new ArrayList<DataPresensiPKL>();
+    AdapterPresensiPKL adapter;
     String user;
     SharedPreferences sharedpreferences;
     EditText tanggal_absensi;
     Button cari;
     ProgressDialog pDialog;
 
-    private static final String TAG = AbsensiPKLSiswa.class.getSimpleName();
+    private static final String TAG = PresensiPKLSiswa.class.getSimpleName();
     public static final String TAG_USER = "id";
-    private static String absensipklfilter  = Server.URL + "kakomp_absensi_pkl_siswa_filter.php";
+    private static String absensipklfilter  = Server.URL + "guru_presensi_pkl_siswa_filter.php";
     public static final String TAG_ID_ABSENSI  = "id_absensi";
     public static final String TAG_NAMA_SISWA  = "nama_siswa";
     public static final String TAG_KELAS = "kelas";
@@ -67,10 +66,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kakomp_absensi_pkl_siswa);
-
-        Toolbar ToolBarAtas2 = findViewById(R.id.toolbar);
-        setSupportActionBar(ToolBarAtas2);
+        setContentView(R.layout.activity_guru_presensi_pkl);
 
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         user = sharedpreferences.getString(TAG_USER, "");
@@ -81,10 +77,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         tanggal_absensi = findViewById(R.id.input_tanggal_absensi);
         cari = findViewById(R.id.btn_cari);
 
-        String date = dateFormatter.format(Calendar.getInstance().getTime());
-        tanggal_absensi.setText(date);
-
-        adapter = new AdapterAbsensiPKL(AbsensiPKLSiswa.this, itemList);
+        adapter = new AdapterPresensiPKL(PresensiPKLSiswa.this, itemList);
         list.setAdapter(adapter);
 
         swipe.setOnRefreshListener(this);
@@ -116,6 +109,9 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                 callVolley1();
             }
         });
+
+        String date = dateFormatter.format(Calendar.getInstance().getTime());
+        tanggal_absensi.setText(date);
 
     }
 
@@ -156,7 +152,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?id_guru="+user+"&tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
@@ -165,7 +161,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                     try {
                         JSONObject obj = response.getJSONObject(i);
 
-                        DataAbsensiPKL item = new DataAbsensiPKL();
+                        DataPresensiPKL item = new DataPresensiPKL();
 
                         item.setId_absensi(obj.getString(TAG_ID_ABSENSI));
                         item.setId_siswa(obj.getString(TAG_NAMA_SISWA));
@@ -176,7 +172,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
 
                         itemList.add(item);
                     } catch (JSONException e) {
-                        Toast.makeText(AbsensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PresensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
@@ -189,19 +185,19 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);
@@ -219,7 +215,7 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
         adapter.notifyDataSetChanged();
         swipe.setRefreshing(true);
 
-        JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
+        JsonArrayRequest jArr = new JsonArrayRequest(absensipklfilter+"?id_guru="+user+"&tanggal_absensi="+tanggal_absensi.getText().toString(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
@@ -228,18 +224,18 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
                     try {
                         JSONObject obj = response.getJSONObject(i);
 
-                        DataAbsensiPKL item = new DataAbsensiPKL();
+                        DataPresensiPKL item = new DataPresensiPKL();
 
                         item.setId_absensi(obj.getString(TAG_ID_ABSENSI));
                         item.setId_siswa(obj.getString(TAG_NAMA_SISWA));
-                        item.setKelas(obj.getString(TAG_KELAS));
                         item.setTanggal_absensi(obj.getString(TAG_TANGGAL_ABSENSI));
+                        item.setKelas(obj.getString(TAG_KELAS));
                         item.setKeterangan(obj.getString(TAG_KETERANGAN));
                         item.setNama_dudi(obj.getString(TAG_NAMA_DUDI));
 
                         itemList.add(item);
                     } catch (JSONException e) {
-                        Toast.makeText(AbsensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PresensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
@@ -252,19 +248,19 @@ public class AbsensiPKLSiswa extends AppCompatActivity implements SwipeRefreshLa
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Waktu koneksi ke server habis", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NoConnectionError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof AuthFailureError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Network AuthFailureError", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ServerError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Tidak dapat terhubung dengan server", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof NetworkError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Gangguan jaringan", Toast.LENGTH_SHORT).show();
                 } else if (error instanceof ParseError) {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Parse Error", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AbsensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PresensiPKLSiswa.this, "Status Error Tidak Diketahui!", Toast.LENGTH_SHORT).show();
                 }
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 swipe.setRefreshing(false);

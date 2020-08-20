@@ -55,7 +55,7 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".ketuakompetensi.AbsensiPKLSiswa">
+            android:name=".ketuakompetensi.PresensiPKLSiswa">
         </activity>
 
         <activity
@@ -89,7 +89,7 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".guru.AbsensiPKLSiswa">
+            android:name=".guru.PresensiPKLSiswa">
         </activity>
 
         <activity
@@ -109,7 +109,7 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".siswa.AbsensiPKL">
+            android:name=".siswa.PresensiPKL">
         </activity>
 
         <activity

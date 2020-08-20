@@ -227,7 +227,7 @@ public class MenuSiswa extends AppCompatActivity {
 
                         if (success.equals("1")) {
                             Log.e("Permohonan PKL", jObj.toString());
-                            Intent intent = new Intent(MenuSiswa.this, AbsensiPKL.class);
+                            Intent intent = new Intent(MenuSiswa.this, PresensiPKL.class);
                             startActivity(intent);
                         } else {
                             cekPengajuanPKL();
