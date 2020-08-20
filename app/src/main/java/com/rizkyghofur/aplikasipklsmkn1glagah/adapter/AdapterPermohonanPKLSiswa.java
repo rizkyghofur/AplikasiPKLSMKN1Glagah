@@ -75,8 +75,10 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
             holder.status_keanggotaan.setText("Status Keanggotaan : " + PermohonanPKLSiswa.getStatus_keanggotaan());
         } else if(PermohonanPKLSiswa.getStatus_validasi().equals("Proses Pengajuan")){
             holder.status_validasi1.setText("Selamat, Permohonan PKL sedang diproses!");
-        } else{
-            holder.status_validasi2.setText("Maaf, Permohonan PKL Anda ditolak! Silahkan mengajukan permohonan PKL kembali.");
+        } else if(PermohonanPKLSiswa.getStatus_validasi().equals("Belum Tervalidasi")){
+            holder.status_validasi2.setText("Permohonan PKL Anda telah masuk dalam sistem dan akan diproses oleh Koordinator PKL.");
+        } else {
+            holder.status_validasi3.setText("Maaf, Permohonan PKL Anda ditolak! Silahkan mengajukan permohonan PKL kembali.");
         }
     }
 
@@ -86,7 +88,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView id_permohonan_pkl, id_siswa, tanggal_pengajuan, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi, status_validasi1, status_validasi2, status_keanggotaan;
+        private TextView id_permohonan_pkl, id_siswa, tanggal_pengajuan, tanggal_masuk, tanggal_keluar, nama_guru, nama_dudi, status_validasi, status_validasi1, status_validasi2, status_validasi3, status_keanggotaan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +103,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
             status_validasi = itemView.findViewById(R.id.status_validasi);
             status_validasi1 = itemView.findViewById(R.id.status_validasi1);
             status_validasi2 = itemView.findViewById(R.id.status_validasi2);
+            status_validasi3 = itemView.findViewById(R.id.status_validasi3);
             status_keanggotaan = itemView.findViewById(R.id.status_keanggotaan);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
