@@ -140,7 +140,7 @@ public class AdapterProgramPKLSiswa extends RecyclerView.Adapter<AdapterProgramP
         }
 
         private void hapusDataProgramPKL(final int position, @NonNull DataProgramPKL programpkl) {
-            String url = Server.URL + "hapus_program_pkl_siswa.php?id_program_pkl=" + programpkl.getId_programpkl();
+            String url = Server.URL + "siswa_hapus_program_pkl.php?id_program_pkl=" + programpkl.getId_programpkl();
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

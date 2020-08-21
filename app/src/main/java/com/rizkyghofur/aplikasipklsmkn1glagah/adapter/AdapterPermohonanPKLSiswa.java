@@ -170,7 +170,7 @@ public class AdapterPermohonanPKLSiswa extends RecyclerView.Adapter<AdapterPermo
         }
 
         private void hapusDataPermohonanPKLSiswa(final int position, @NonNull DataPermohonanPKL PermohonanPKLSiswa) {
-            String url = Server.URL + "hapus_permohonan_pkl_siswa.php?id_pengajuanpkl=" + PermohonanPKLSiswa.getId();
+            String url = Server.URL + "siswa_hapus_permohonan_pkl.php?id_pengajuanpkl=" + PermohonanPKLSiswa.getId();
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

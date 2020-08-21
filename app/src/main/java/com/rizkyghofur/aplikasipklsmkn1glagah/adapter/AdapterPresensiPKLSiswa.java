@@ -123,7 +123,7 @@ public class AdapterPresensiPKLSiswa extends RecyclerView.Adapter<AdapterPresens
     }
 
     private void hapusDataAbsensiPKLSiswa(final int position, @NonNull DataPresensiPKL absensiPKLSiswa) {
-        String url = Server.URL + "hapus_absensi_pkl_siswa.php?id_absensi=" + absensiPKLSiswa.getId_absensi();
+        String url = Server.URL + "siswa_hapus_absensi_pkl.php?id_absensi=" + absensiPKLSiswa.getId_absensi();
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
