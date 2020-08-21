@@ -54,7 +54,7 @@ public class AdapterPresensiPKLSiswa extends RecyclerView.Adapter<AdapterPresens
 
         holder.id_absensi_pkl.setText(AbsensiPKLSiswa.getId_absensi());
         holder.id_siswa.setText("Nama Siswa : "+ AbsensiPKLSiswa.getId_siswa());
-        holder.tanggal_absensi.setText("Tanggal Absensi : " + AbsensiPKLSiswa.getTanggal_absensi());
+        holder.tanggal_absensi.setText("Tanggal Presensi : " + AbsensiPKLSiswa.getTanggal_absensi());
         holder.keterangan.setText("Keterangan : " + AbsensiPKLSiswa.getKeterangan());
     }
 
@@ -104,12 +104,12 @@ public class AdapterPresensiPKLSiswa extends RecyclerView.Adapter<AdapterPresens
         private void lihatDataAbsensiPKLSiswa(@NonNull DataPresensiPKL AbsensiPKLSiswa) {
             String deskripsi =
                     "\n Nama Siswa : \n" + AbsensiPKLSiswa.getId_siswa() +
-                            "\n\n Tanggal Absensi : " + AbsensiPKLSiswa.getTanggal_absensi() +
+                            "\n\n Tanggal Presensi : " + AbsensiPKLSiswa.getTanggal_absensi() +
                                     "\n\n Keterangan : " + AbsensiPKLSiswa.getKeterangan();
 
 
             new AlertDialog.Builder(context)
-                    .setTitle("Detail Absensi PKL Siswa")
+                    .setTitle("Detail Presensi PKL Siswa")
                     .setMessage(deskripsi)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override

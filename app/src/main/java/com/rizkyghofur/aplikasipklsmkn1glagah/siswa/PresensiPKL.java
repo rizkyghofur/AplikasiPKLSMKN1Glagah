@@ -210,7 +210,7 @@ public class PresensiPKL extends AppCompatActivity {
         dialog.setView(dialogView);
         dialog.setCancelable(true);
         dialog.setIcon(R.mipmap.login);
-        dialog.setTitle("Form Absensi PKL");
+        dialog.setTitle("Form Presensi PKL");
 
         txt_tanggal = dialogView.findViewById(R.id.tanggal_absensi);
         txt_hasil = dialogView.findViewById(R.id.txt_hasil);
