@@ -57,7 +57,7 @@ public class AdapterJurnalPKLSiswa extends RecyclerView.Adapter<AdapterJurnalPKL
 
         holder.id_jurnal_pkl.setText(JurnalPKL.getId_jurnal_pkl());
         holder.id_siswa.setText(JurnalPKL.getId_siswa());
-        holder.tanggal.setText("Tanggal Kunjungan : " + JurnalPKL.getTanggal());
+        holder.tanggal.setText("Tanggal : " + JurnalPKL.getTanggal());
         holder.kompetensi_dasar.setText("Rujukan Kompetensi Dasar : " + JurnalPKL.getKompetensi_dasar());
         holder.topik_pekerjaan.setText("Topik Pekerjaan : " + JurnalPKL.getTopik_pekerjaan());
         holder.status.setText("Status Validasi : " + JurnalPKL.getStatus());

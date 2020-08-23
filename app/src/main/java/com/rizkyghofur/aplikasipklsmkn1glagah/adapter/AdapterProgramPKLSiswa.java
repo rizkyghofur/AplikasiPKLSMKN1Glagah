@@ -55,7 +55,7 @@ public class AdapterProgramPKLSiswa extends RecyclerView.Adapter<AdapterProgramP
 
         holder.id_program_pkl.setText(programpkl.getId_programpkl());
         holder.id_siswa.setText(programpkl.getId_siswa());
-        holder.tanggal.setText("Tanggal Kunjungan : " + programpkl.getUrutan_waktu_pelaksanaan());
+        holder.tanggal.setText("Tanggal : " + programpkl.getUrutan_waktu_pelaksanaan());
         holder.nama_dudi.setText("Instansi / DUDI Pasangan : " + programpkl.getDudi_pasangan());
         holder.kompetensi_dasar.setText("Rujukan Kompetensi Dasar : " + programpkl.getKompetensi_dasar());
         holder.topik_pekerjaan.setText("Topik Pekerjaan : " + programpkl.getTopik_pekerjaan());
