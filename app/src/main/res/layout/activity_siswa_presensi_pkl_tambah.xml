@@ -9,10 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
-            android:id="@+id/tanggal_absensi"
-            android:layout_width="290dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:text="Pilih Tanggal :"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tanggal_absensi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:background="@drawable/shapeemail_black"
             android:drawablePadding="10dp"
             android:hint="Tanggal Presensi : Format TTTT/BB/HH"
@@ -21,18 +27,32 @@
             android:editable="false"
             android:inputType="date" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Siswa :"
+            android:layout_marginTop="80dp"
+            android:textColor="#000000"/>
+
         <Spinner
             android:id="@+id/spinner_list_siswa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="95dp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="155dp"
+            android:text="Pilih Keterangan :"
             android:textColor="#000000"/>
 
         <Spinner
             android:id="@+id/spinner_keterangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="180dp"
             android:entries="@array/keterangan"/>
 
         <EditText
