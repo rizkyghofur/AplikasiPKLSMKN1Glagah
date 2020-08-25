@@ -141,8 +141,8 @@ public class JurnalPKL extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(JurnalPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
-                    hideDialog();
                 }
+                hideDialog();
             }
         }, new Response.ErrorListener() {
             @Override
