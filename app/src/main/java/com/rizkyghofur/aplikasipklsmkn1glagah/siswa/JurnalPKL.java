@@ -132,9 +132,12 @@ public class JurnalPKL extends AppCompatActivity {
                     Type typeJurnalPKL = new TypeToken<ArrayList<DataJurnalPKL>>() {
                     }.getType();
                     arrayJurnalPKL = new Gson().fromJson(response, typeJurnalPKL);
-                    adapter = new AdapterJurnalPKLSiswa(JurnalPKL.this, arrayJurnalPKL);
-                    recyclerView.setAdapter(adapter);
-                    hideDialog();
+                    if(arrayJurnalPKL.isEmpty()){
+                        Toast.makeText(JurnalPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapter = new AdapterJurnalPKLSiswa(JurnalPKL.this, arrayJurnalPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Toast.makeText(JurnalPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -179,6 +182,11 @@ public class JurnalPKL extends AppCompatActivity {
                     Type typeJurnalPKL = new TypeToken<ArrayList<DataJurnalPKL>>() {
                     }.getType();
                     arrayJurnalPKL = new Gson().fromJson(response, typeJurnalPKL);
+                    if(arrayJurnalPKL.isEmpty()){
+                        Toast.makeText(JurnalPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                        adapter = new AdapterJurnalPKLSiswa(JurnalPKL.this, arrayJurnalPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                     adapter = new AdapterJurnalPKLSiswa(JurnalPKL.this, arrayJurnalPKL);
                     recyclerView.setAdapter(adapter);
                 } catch (Exception e) {

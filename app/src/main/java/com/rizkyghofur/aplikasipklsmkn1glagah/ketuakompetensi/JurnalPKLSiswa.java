@@ -151,6 +151,10 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
 
+                if(response.length()==0){
+                    Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
@@ -216,6 +220,10 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
 
+                if(response.length()==0){
+                    Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
@@ -280,5 +288,4 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
-
 }

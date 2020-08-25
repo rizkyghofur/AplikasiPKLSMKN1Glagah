@@ -1,7 +1,6 @@
 package com.rizkyghofur.aplikasipklsmkn1glagah.guru;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -148,6 +147,10 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
 
+                if(response.length()==0){
+                    Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
@@ -211,6 +214,10 @@ public class JurnalPKLSiswa extends AppCompatActivity implements SwipeRefreshLay
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
+
+                if(response.length()==0){
+                    Toast.makeText(JurnalPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
 
                 for (int i = 0; i < response.length(); i++) {
                     try {

@@ -130,8 +130,12 @@ public class ProgramPKL extends AppCompatActivity {
                     Type typeProgramPKL = new TypeToken<ArrayList<DataProgramPKL>>() {
                     }.getType();
                     arrayProgramPKL = new Gson().fromJson(response, typeProgramPKL);
-                    adapter = new AdapterProgramPKLSiswa(ProgramPKL.this, arrayProgramPKL);
-                    recyclerView.setAdapter(adapter);
+                    if(arrayProgramPKL.isEmpty()){
+                        Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapter = new AdapterProgramPKLSiswa(ProgramPKL.this, arrayProgramPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -176,8 +180,14 @@ public class ProgramPKL extends AppCompatActivity {
                     Type typeProgramPKL = new TypeToken<ArrayList<DataProgramPKL>>() {
                     }.getType();
                     arrayProgramPKL = new Gson().fromJson(response, typeProgramPKL);
-                    adapter = new AdapterProgramPKLSiswa(ProgramPKL.this, arrayProgramPKL);
-                    recyclerView.setAdapter(adapter);
+                    if(arrayProgramPKL.isEmpty()){
+                        Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                        adapter = new AdapterProgramPKLSiswa(ProgramPKL.this, arrayProgramPKL);
+                        recyclerView.setAdapter(adapter);
+                    } else {
+                        adapter = new AdapterProgramPKLSiswa(ProgramPKL.this, arrayProgramPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Toast.makeText(ProgramPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -207,5 +217,4 @@ public class ProgramPKL extends AppCompatActivity {
         });
         AppController.getInstance().addToQueue(request, "data_program_pkl");
     }
-
 }

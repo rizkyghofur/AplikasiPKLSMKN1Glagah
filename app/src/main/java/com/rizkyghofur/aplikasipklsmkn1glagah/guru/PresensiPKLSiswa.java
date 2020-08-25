@@ -157,6 +157,10 @@ public class PresensiPKLSiswa extends AppCompatActivity implements SwipeRefreshL
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
 
+                if(response.length()==0){
+                    Toast.makeText(PresensiPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);

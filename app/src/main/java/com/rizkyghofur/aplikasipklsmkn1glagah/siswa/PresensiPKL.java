@@ -377,8 +377,12 @@ public class PresensiPKL extends AppCompatActivity {
                     Type typeAbsensiPKL = new TypeToken<ArrayList<DataPresensiPKL>>() {
                     }.getType();
                     arrayAbsensiPKL = new Gson().fromJson(response, typeAbsensiPKL);
-                    adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
-                    recyclerView.setAdapter(adapter);
+                    if(arrayAbsensiPKL.isEmpty()){
+                        Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -418,12 +422,21 @@ public class PresensiPKL extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, url + "?id_siswa=" + user + "&id_dudi=" + id_dudi + "&tanggal_absensi=" + input_tanggal.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                if(response == null){
+                    Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
                 try {
                     Type typeAbsensiPKL = new TypeToken<ArrayList<DataPresensiPKL>>() {
                     }.getType();
                     arrayAbsensiPKL = new Gson().fromJson(response, typeAbsensiPKL);
+                    if(arrayAbsensiPKL.isEmpty()){
+                        Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                        adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
+                        recyclerView.setAdapter(adapter);
+                    } else {
                     adapter = new AdapterPresensiPKLSiswa(PresensiPKL.this, arrayAbsensiPKL);
                     recyclerView.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     Toast.makeText(PresensiPKL.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();

@@ -146,6 +146,10 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
 
+                if(response.length()==0){
+                    Toast.makeText(PengajuanPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
@@ -212,6 +216,10 @@ public class PengajuanPKLSiswa extends AppCompatActivity implements SwipeRefresh
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
+
+                if(response.length()==0){
+                    Toast.makeText(PengajuanPKLSiswa.this, "Data Kosong!", Toast.LENGTH_SHORT).show();
+                }
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
