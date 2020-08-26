@@ -242,6 +242,11 @@ public class PermohonanPKL extends AppCompatActivity {
                     Type typePermohonanPKL = new TypeToken<ArrayList<DataPermohonanPKL>>() {
                     }.getType();
                     arrayPermohonanPKL = new Gson().fromJson(response, typePermohonanPKL);
+                    if(arrayPermohonanPKL.isEmpty()){
+                        Toast.makeText(PermohonanPKL.this, "Maaf, Anda belum mengajukan permohonan PKL. Silahkan mengajukan permohonan PKL sesuai jadwal kegiatan PKL di jurusan Anda.", Toast.LENGTH_LONG).show();
+                        adapter = new AdapterPermohonanPKLSiswa(PermohonanPKL.this, arrayPermohonanPKL);
+                        recyclerView.setAdapter(adapter);
+                    }
                     adapter = new AdapterPermohonanPKLSiswa(PermohonanPKL.this, arrayPermohonanPKL);
                     recyclerView.setAdapter(adapter);
                 } catch (Exception e) {
