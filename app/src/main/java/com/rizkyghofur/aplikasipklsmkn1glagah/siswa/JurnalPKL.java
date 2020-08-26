@@ -173,7 +173,6 @@ public class JurnalPKL extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat data...");
         showDialog();
-        adapter.notifyDataSetChanged();
         String url = Server.URL + "siswa_jurnal_pkl_filter.php";
         StringRequest request = new StringRequest(Request.Method.GET, url+"?id_siswa="+user+"&tanggal="+tanggal.getText().toString(), new Response.Listener<String>() {
             @Override
